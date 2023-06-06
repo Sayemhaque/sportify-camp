@@ -26,11 +26,12 @@ const Slider = () => {
               <div className="hero-overlay bg-opacity-70"></div>
               <div className="hero-content text-center text-white">
                 <div className="max-w-full text-center">
-                  <h1 className={`${isDarkMode ? "mb-5 text-6xl font-bold text-white": "mb-5 text-6xl font-bold text-orange-300"}`}>{item.text}</h1>
-                  <p className="mb-5 max-w-md mx-auto font-bold">
+                <h1 className={`mb-5 text-4xl md:text-6xl font-bold ${isDarkMode ? "text-white" : "text-orange-300"}`}>{item.text}</h1>
+                  <p className="mb-5 max-w-lg mx-auto font-bold text-sm md:text-md">
                    {item.message}
                   </p>
-                  <button className={`${isDarkMode ? "px-8 py-3 rounded-full text-white font-bold shadow-md bg-slate-800 " : "px-8 py-3 rounded-full text-black font-bold shadow-md bg-orange-300 "}`}>
+                  <button className={`px-8 py-3 rounded-full  font-bold shadow-md  
+                   ${isDarkMode ? "bg-slate-800 text-white" : "bg-orange-300 text-black"}`}>
                            Enroll Now
                         </button>
                 </div>
