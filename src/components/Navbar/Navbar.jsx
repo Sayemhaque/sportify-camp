@@ -40,8 +40,10 @@ const Navbar = () => {
                         </div>
                     </div>
                     }
-                    <button className="px-8 py-2 rounded-full font-bold shadow-md bg-gray-200 ">Log In
+                   <Link to="/login">
+                   <button className="px-8 py-2 rounded-full font-bold shadow-md bg-gray-200 ">Log In
                     </button>
+                   </Link>
                 </div>
 
             </div>
