@@ -2,15 +2,25 @@ import { useForm } from "react-hook-form";
 import SocialLogin from "../../components/Social Login/SocialLogin";
 import { useContext,useState } from "react";
 import { ThemeContext } from "../../Provider/ThemeProvider";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {FaEye,FaEyeSlash} from "react-icons/fa"
+import { FirebaseAuthContext } from "../../Provider/AuthProvider";
 
 const Login = () => {
     const [error,setError] = useState('')
     const [type , setType] = useState(true)
     const {isDarkMode} = useContext(ThemeContext)
+    const {logIn} = useContext(FirebaseAuthContext)
+    const navigate = useNavigate()
     const { register, handleSubmit } = useForm();
-  const onSubmit = data => console.log(data);
+  const onSubmit = async (data) => {
+     try {
+        await logIn(data.email,data.password)
+        navigate('/')
+     } catch (error) {
+        setError(error.message)
+     }
+  };
 
    const handleType = () => {
     setType(!type)
@@ -35,6 +45,7 @@ const Login = () => {
                     className="w-5 h-5" onClick={handleType}/>}
                 </span>
                 </div>
+                <p className="text-red-400">{error}</p>
             <button className={`py-3 font-bold rounded-full  btn-block ${isDarkMode ? "bg-slate-800 text-white ": "bg-orange-300 text-black"}`}>Log In</button>
             </form>
             <div className="divider">or</div>

@@ -1,17 +1,22 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import ThemeToggle from "../Theme/ThemeToogle";
 import { useContext } from "react";
 import { ThemeContext } from "../../Provider/ThemeProvider";
+import { FirebaseAuthContext } from "../../Provider/AuthProvider";
 const Navbar = () => {
     const { isDarkMode } = useContext(ThemeContext)
-    const user = true;
+    const {user,logOut} = useContext(FirebaseAuthContext)
+    const navigate = useNavigate()
     const navLinks = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/Instructors'>Instructors</Link></li>
         <li><Link to='/Classes'>Classes</Link></li>
         <li><Link to='/Dashboard'>Dashboard</Link></li>
         <li><ThemeToggle /></li> </>
-
+  const handelLogOut = async () => {
+    await logOut()
+    navigate("/login")
+  }
     return (
         <div className={`${isDarkMode ? "bg-slate-800 py-2" : "navbar bg-orange-300 shadow-lg"}`}>
             <div className="navbar md:max-w-6xl mx-auto">
@@ -36,14 +41,18 @@ const Navbar = () => {
                 <div className="navbar-end ">
                     {user && <div className="avatar mr-4">
                         <div className="w-12">
-                            <img src="https://cdn-icons-png.flaticon.com/512/147/147144.png" />
+                            <img src={user?.photoURL} className="rounded-full" title={user?.displayName}/>
                         </div>
                     </div>
                     }
+                   {user ? 
+                   <button onClick={handelLogOut} className="px-8 py-2 rounded-full font-bold shadow-md bg-gray-200 ">Log Out
+                    </button>
+                   : 
                    <Link to="/login">
                    <button className="px-8 py-2 rounded-full font-bold shadow-md bg-gray-200 ">Log In
                     </button>
-                   </Link>
+                   </Link>}
                 </div>
 
             </div>
