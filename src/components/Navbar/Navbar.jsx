@@ -9,9 +9,9 @@ const Navbar = () => {
     const navigate = useNavigate()
     const navLinks = <>
         <li><Link to='/'>Home</Link></li>
-        <li><Link to='/Instructors'>Instructors</Link></li>
-        <li><Link to='/Classes'>Classes</Link></li>
-        <li><Link to='/Dashboard'>Dashboard</Link></li>
+        <li><Link to='/instructors'>Instructors</Link></li>
+        <li><Link to='/classes'>Classes</Link></li>
+        <li><Link to='/dashboard'>Dashboard</Link></li>
         <li><ThemeToggle /></li> </>
   const handelLogOut = async () => {
     await logOut()

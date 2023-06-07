@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link,Outlet } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
 import useInstructor from "../hooks/useInstructor";
 
@@ -25,8 +25,9 @@ const links = isAdmin.admin ? adminLinks : (isInstructor.instructor ? instructor
     return (
         <div className="drawer lg:drawer-open">
   <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-  <div className="drawer-content flex flex-col items-center justify-center">
+  <div className="drawer-content">
     {/* Page content here */}
+    <Outlet/>
     <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
   
   </div> 
