@@ -1,8 +1,11 @@
 import {useForm} from "react-hook-form"
+import { uploadImage } from "../../../utils/CRUD";
 const AddAClass = () => {
     const { register, handleSubmit } = useForm();
     const onSubmit = async (data) => {
        console.log(data)
+       const url = await uploadImage(data.image[0])
+       console.log(data,url)
      };
     return (
         <div className="p-10">
