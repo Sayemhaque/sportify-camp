@@ -4,6 +4,7 @@ import { ThemeContext } from "../../Provider/ThemeProvider";
 import { Link, useNavigate } from "react-router-dom";
 import SocialLogin from "../../components/Social Login/SocialLogin";
 import { FirebaseAuthContext } from "../../Provider/AuthProvider";
+import { postRequest } from "../../utils/CRUD";
 
 const Register = () => {
     const {isDarkMode} = useContext(ThemeContext)
@@ -31,10 +32,13 @@ const Register = () => {
             setError('Error: Password should contain at least one capital letter.');
             return;
           }
+          const user = {name:data.name,email:data.email,role:"student"}
           setError('')
           await registerUser(data.email,data.password)
           await  updateUserProfile(data.name,data.photurl)
           await logOut()
+          const res = await postRequest('user',user)
+          console.log(res)
           navigate('/login')
          
       }

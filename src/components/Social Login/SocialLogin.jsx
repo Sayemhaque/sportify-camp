@@ -2,11 +2,14 @@ import { FirebaseAuthContext } from "../../Provider/AuthProvider";
 import {useContext} from "react"
 import {useNavigate} from "react-router-dom"
 import GoogleIcon from "../../assets/google.png"
+import { postRequest } from "../../utils/CRUD";
 const SocialLogin = () => {
     const {logInWithGoogle} = useContext(FirebaseAuthContext)
     const navigate = useNavigate()
     const handleSocialLogin = async () => {
-       await logInWithGoogle();
+    const result =  await logInWithGoogle(); 
+    const user = {name:result.user?.displayName , email:result.user?.email,role:"student"}
+       await postRequest('user',user)
        navigate('/')
     }
     return (
