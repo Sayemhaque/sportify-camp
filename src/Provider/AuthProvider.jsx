@@ -1,6 +1,7 @@
 import {createContext, useEffect, useState} from 'react';
 import {GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile} from "firebase/auth"
 import app from '../Firebase/Firebase.config';
+import { postRequest } from '../utils/CRUD';
 
 
 export const FirebaseAuthContext = createContext()
@@ -47,8 +48,18 @@ const AuthProvider = ({children}) => {
             setUser(currentUser)
             setLoading(false)
             console.log(currentUser)
+            const jwtRequest = async () => {
+                if(currentUser){
+                    const email = currentUser.email;
+                    const res = await postRequest('jwt',{email})
+                    console.log(res.data)
+                     localStorage.setItem('token' , res.data)
+                }else{
+                    localStorage.removeItem("token")
+                }
+            }
+            jwtRequest()
         })
-    
         return () =>{
             unsubscribe()
         }
