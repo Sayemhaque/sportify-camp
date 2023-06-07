@@ -9,12 +9,13 @@ const SocialLogin = () => {
     const handleSocialLogin = async () => {
     const result =  await logInWithGoogle(); 
     const user = {name:result.user?.displayName , email:result.user?.email,role:"student"}
+     //store user to the mongodb database
        await postRequest('user',user)
        navigate('/')
     }
     return (
         <div>
-            <button onClick={handleSocialLogin} className="btn-block flex items-center justify-center gap-3 bg-gray-300 font-bold py-2 rounded-full">
+              <button onClick={handleSocialLogin} className="btn-block flex items-center justify-center gap-3 bg-gray-300 font-bold py-2 rounded-full">
                 <img className="w-6 h-6" src={GoogleIcon} alt="" />
                 Login With Google</button>
         </div>
