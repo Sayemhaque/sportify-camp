@@ -3,7 +3,7 @@ import { postRequestJWT, uploadImage } from "../../../utils/CRUD";
 import { useContext } from "react";
 import { FirebaseAuthContext } from "../../../Provider/AuthProvider";
 const AddAClass = () => {
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit,reset } = useForm();
     const { user } = useContext(FirebaseAuthContext)
     const onSubmit = async (data) => {
         console.log(data)
@@ -14,6 +14,7 @@ const AddAClass = () => {
             seats: parseFloat(seats), image: url
         }
         await postRequestJWT('add/class',instructorData)
+        reset()
         console.log(instructorData)
     };
     return (

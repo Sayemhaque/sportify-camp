@@ -15,7 +15,7 @@ const Login = () => {
     const { register, handleSubmit } = useForm();
   const onSubmit = async (data) => {
      try {
-        await logIn(data.email,data.password)
+        await logIn(data.email,data.password,)
         navigate('/')
      } catch (error) {
         setError(error.message)

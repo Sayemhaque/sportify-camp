@@ -32,7 +32,7 @@ const Register = () => {
             setError('Error: Password should contain at least one capital letter.');
             return;
           }
-          const user = {name:data.name,email:data.email,role:"student"}
+          const user = {name:data.name,image:data.photurl,email:data.email,role:"instructor",}
           setError('')
           await registerUser(data.email,data.password)
           await  updateUserProfile(data.name,data.photurl)
