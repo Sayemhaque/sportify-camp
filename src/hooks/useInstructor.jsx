@@ -7,7 +7,7 @@ const useInstructor = () => {
     const token = localStorage.getItem('token')
     const {user,loading} = useContext(FirebaseAuthContext)
     const {data:isInstructor,isLoading:isInstructorLoading} = useQuery({
-        queryKey:['isInstructor'],
+        queryKey:['isInstructor',],
         enabled:!loading,
         queryFn:async () => {
             const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/user/instructor/${user?.email}`,

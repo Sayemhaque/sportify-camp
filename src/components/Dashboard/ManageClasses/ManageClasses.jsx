@@ -1,9 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { approveAClass } from "../../../utils/CRUD";
 
 const ManageClasses = () => {
     const token = localStorage.getItem('token')
-    const { data: classes = [],isLoading } = useQuery({
+    const { data: classes = [],isLoading,refetch } = useQuery({
         queryKey: ['classes'],
         queryFn: async () => {
             const res = await axios.get('http://localhost:3000/allclasses', {
@@ -16,7 +17,14 @@ const ManageClasses = () => {
     if(isLoading){
         return <p className="text-center">Loading...</p>
     }
-    console.log(classes)
+    const handleApproveClass = async (id) => {
+        await approveAClass(`status/approve/${id}`)
+        refetch()
+    }
+    const handleDenyClass = async (id) => {
+        await approveAClass(`status/deny/${id}`)
+        refetch()
+    }
     return (
         <div>
             <h1 className="text-center text-4xl py-2 font-serif w-4/12 mx-auto  border border-b-4">Manage Classes</h1>
@@ -59,10 +67,11 @@ const ManageClasses = () => {
                             <td>{Class.seats}</td>
                             <td>{Class.price}$</td>
                             <td>
-                                pending
+                              {Class.status}
                             </td>
-                            <td> <button className="bg-green-200 p-1 rounded-full">Approve</button></td>
-                            <td> <button className="bg-red-200 p-1 rounded-full">Deny</button></td>
+                            <td> <button className="bg-green-200 p-1 rounded-full disabled:bg-gray-200 disabled:cursor-not-allowed" onClick={() => handleApproveClass(Class._id)} disabled={Class.status !== "pending"}>Approve</button></td>
+
+                            <td> <button className="bg-red-200 p-1 rounded-full disabled:bg-gray-200 disabled:cursor-not-allowed" onClick={() => handleDenyClass(Class._id)} disabled={Class.status !== "pending"}>Deny</button></td>
                             <td> <button className="bg-yellow-200 p-1 rounded-full">Feedback</button></td>
                         </tr>)}
                     </tbody>
