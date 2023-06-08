@@ -1,4 +1,5 @@
 import axios from "axios";
+const token = localStorage.getItem('token')
 const image_hosting_key = import.meta.env.VITE_imgbbApiKey
 
 const postRequest = async (endpoint,data)  => {
@@ -6,7 +7,12 @@ const postRequest = async (endpoint,data)  => {
   return res
 }
 
-
+const addClass = (endpoint,data) => {
+  const res = axios.post(`${import.meta.env.VITE_BASE_URL}/${endpoint}` , data,
+   {headers:{authorization:`baerer ${token}`}}
+  )
+  return res.data
+}
  
 
 
@@ -19,4 +25,4 @@ const uploadImage = async (image) => {
         return imageURL
 }
 
-export {postRequest,uploadImage};
+export {postRequest,uploadImage,addClass};

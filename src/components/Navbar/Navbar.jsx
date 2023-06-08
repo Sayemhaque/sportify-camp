@@ -3,15 +3,19 @@ import ThemeToggle from "../Theme/ThemeToogle";
 import { useContext } from "react";
 import { ThemeContext } from "../../Provider/ThemeProvider";
 import { FirebaseAuthContext } from "../../Provider/AuthProvider";
+import useAdmin from "../../hooks/useAdmin";
+import useInstructor from "../../hooks/useInstructor";
 const Navbar = () => {
     const { isDarkMode } = useContext(ThemeContext)
     const {user,logOut} = useContext(FirebaseAuthContext)
+    const [isAdmin] = useAdmin()
+    const [isInstructor] = useInstructor()
     const navigate = useNavigate()
     const navLinks = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/instructors'>Instructors</Link></li>
         <li><Link to='/classes'>Classes</Link></li>
-        <li><Link to='/dashboard'>Dashboard</Link></li>
+        <li><Link to={isAdmin.admin ? "/dashboard/manage" : (isInstructor.instructor ? "/dashboard/add" : '/dashboard/selected')}>Dashboard</Link></li>
         <li><ThemeToggle /></li> </>
   const handelLogOut = async () => {
     await logOut()

@@ -5,7 +5,7 @@ import useInstructor from "../hooks/useInstructor";
 const Dashboard = () => {
     const [isAdmin] = useAdmin()
     const [isInstructor,isLoading] = useInstructor()
-    console.log(isInstructor)
+    console.log(isInstructor,isAdmin)
     const studentLinks = <>
     <li> <Link to='/dashboard/selected'>My Selected Classes</Link></li>
     <li> <Link to='/dashboardenrolled'>My Enrolled Classes</Link></li>

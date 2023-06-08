@@ -6,6 +6,8 @@ import Register from "../Pages/Register/Register";
 import Dashboard from "../Layout/Dashboard";
 import InstructorRoute from "../privateRoute/InstructorRoute";
 import AddAClass from "../components/Dashboard/AddClass/AddAClass";
+import StudentRoute from "../privateRoute/StudentRoute";
+import Myselected from "../components/Dashboard/student/Myselected";
 
 
 
@@ -33,6 +35,10 @@ export const router = createBrowserRouter([
         path:"dashboard",
         element:<Dashboard/>,
         children:[
+            {
+                path:'selected',
+                element:<StudentRoute><Myselected/></StudentRoute>
+            },
             {
                 path:'add',
                 element:<InstructorRoute><AddAClass/></InstructorRoute>
