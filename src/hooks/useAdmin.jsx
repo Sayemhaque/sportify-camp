@@ -4,19 +4,20 @@ import {useContext} from "react"
 import { FirebaseAuthContext } from "../Provider/AuthProvider"
 const useAdmin = () => {
     const token = localStorage.getItem('token')
-    const {user} = useContext(FirebaseAuthContext)
-    const {data: isAdmin= []} = useQuery({
-        queryKey:['admin'],
+    const {user,loading} = useContext(FirebaseAuthContext)
+    const {data: isAdmin,isLoading:isAdminLoading} = useQuery({
+        queryKey:['isAdmin' ,],
+        enabled:!loading,
         queryFn:async () => {
             const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/user/admin/${user?.email}`,{
                 headers:{authorization:`baerer ${token}`}
             })
 
-            return res.data
+            return res.data.admin
         }
     })
 
-    return [isAdmin]
+    return [isAdmin,isAdminLoading]
 }
 
 export default useAdmin;

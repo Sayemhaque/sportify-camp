@@ -8,6 +8,8 @@ import InstructorRoute from "../privateRoute/InstructorRoute";
 import AddAClass from "../components/Dashboard/AddClass/AddAClass";
 import StudentRoute from "../privateRoute/StudentRoute";
 import Myselected from "../components/Dashboard/student/Myselected";
+import AdminRoute from "../privateRoute/AdminRoute";
+import Manage from "../components/Dashboard/ManageUser/Manage";
 
 
 
@@ -42,6 +44,10 @@ export const router = createBrowserRouter([
             {
                 path:'add',
                 element:<InstructorRoute><AddAClass/></InstructorRoute>
+            },
+            {
+                path:'manage',
+                element:<AdminRoute><Manage/></AdminRoute>
             }
         ]
     }

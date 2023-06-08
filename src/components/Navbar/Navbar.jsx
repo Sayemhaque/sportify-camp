@@ -5,22 +5,28 @@ import { ThemeContext } from "../../Provider/ThemeProvider";
 import { FirebaseAuthContext } from "../../Provider/AuthProvider";
 import useAdmin from "../../hooks/useAdmin";
 import useInstructor from "../../hooks/useInstructor";
+
 const Navbar = () => {
     const { isDarkMode } = useContext(ThemeContext)
-    const {user,logOut} = useContext(FirebaseAuthContext)
+    const { user, logOut } = useContext(FirebaseAuthContext)
     const [isAdmin] = useAdmin()
     const [isInstructor] = useInstructor()
+    console.log(isInstructor)
     const navigate = useNavigate()
     const navLinks = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/instructors'>Instructors</Link></li>
         <li><Link to='/classes'>Classes</Link></li>
-        <li><Link to={isAdmin.admin ? "/dashboard/manage" : (isInstructor.instructor ? "/dashboard/add" : '/dashboard/selected')}>Dashboard</Link></li>
+        <li>
+            <Link to={isAdmin ? "/dashboard/manage" : isInstructor ? "/dashboard/add" : "/dashboard/selected"}>
+                Dashboard
+            </Link>
+        </li>
         <li><ThemeToggle /></li> </>
-  const handelLogOut = async () => {
-    await logOut()
-    navigate("/login")
-  }
+    const handelLogOut = async () => {
+        await logOut()
+        navigate("/login")
+    }
     return (
         <div className={`${isDarkMode ? "bg-slate-800 py-2" : "navbar bg-orange-300 shadow-lg"}`}>
             <div className="navbar md:max-w-6xl mx-auto">
@@ -45,18 +51,18 @@ const Navbar = () => {
                 <div className="navbar-end ">
                     {user && <div className="avatar mr-4">
                         <div className="w-12">
-                            <img src={user?.photoURL} className="rounded-full" title={user?.displayName}/>
+                            <img src={user?.photoURL} className="rounded-full" title={user?.displayName} />
                         </div>
                     </div>
                     }
-                   {user ? 
-                   <button onClick={handelLogOut} className="px-8 py-2 rounded-full font-bold shadow-md bg-gray-200 ">Log Out
-                    </button>
-                   : 
-                   <Link to="/login">
-                   <button className="px-8 py-2 rounded-full font-bold shadow-md bg-gray-200 ">Log In
-                    </button>
-                   </Link>}
+                    {user ?
+                        <button onClick={handelLogOut} className="px-8 py-2 rounded-full font-bold shadow-md bg-gray-200 ">Log Out
+                        </button>
+                        :
+                        <Link to="/login">
+                            <button className="px-8 py-2 rounded-full font-bold shadow-md bg-gray-200 ">Log In
+                            </button>
+                        </Link>}
                 </div>
 
             </div>

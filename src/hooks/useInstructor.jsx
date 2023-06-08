@@ -6,8 +6,8 @@ import {useQuery} from "@tanstack/react-query"
 const useInstructor = () => {
     const token = localStorage.getItem('token')
     const {user,loading} = useContext(FirebaseAuthContext)
-    const {data: isInstructor= [],isLoading} = useQuery({
-        queryKey:['instructor'],
+    const {data:isInstructor,isLoading:isInstructorLoading} = useQuery({
+        queryKey:['isInstructor'],
         enabled:!loading,
         queryFn:async () => {
             const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/user/instructor/${user?.email}`,
@@ -16,11 +16,11 @@ const useInstructor = () => {
             }
             )
 
-            return res.data
+            return res.data.instructor
         }
     })
 
-    return [isInstructor,isLoading]
+    return [isInstructor,isInstructorLoading]
 };
 
 export default useInstructor;
