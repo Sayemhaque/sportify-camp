@@ -18,8 +18,8 @@ const Dashboard = () => {
     <li>  <Link to='/dashboard/elrolled'>Total Enrolled Students</Link></li>
   </>
   const adminLinks = <>
-    <li> <Link to='/dashboard/manage'>Manage Classes</Link></li>
-    <li> <Link to='/dashboard/users'>Manage User</Link></li>
+    <li> <Link to='/dashboard/manage/classes'>Manage Classes</Link></li>
+    <li> <Link to='/dashboard/manage/users'>Manage User</Link></li>
   </>
 
 const links = isAdmin ? adminLinks : (isInstructor ? instructorLinks : studentLinks);
