@@ -14,7 +14,7 @@ const Dashboard = () => {
   </>
   const instructorLinks = <>
     <li> <Link to='/dashboard/add'>Add A Class</Link></li>
-    <li> <Link to='/dashboard/classes'>My Classes</Link></li>
+    <li> <Link to='/dashboard/instructor/classes'>My Classes</Link></li>
     <li>  <Link to='/dashboard/elrolled'>Total Enrolled Students</Link></li>
   </>
   const adminLinks = <>

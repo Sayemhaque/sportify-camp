@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form"
-import { postRequestJWT, uploadImage } from "../../../utils/CRUD";
 import { useContext } from "react";
-import { FirebaseAuthContext } from "../../../Provider/AuthProvider";
+import { postRequestJWT, uploadImage } from "../../../../utils/CRUD";
+import { FirebaseAuthContext } from "../../../../Provider/AuthProvider";
 const AddAClass = () => {
     const { register, handleSubmit,reset } = useForm();
     const { user } = useContext(FirebaseAuthContext)
@@ -9,13 +9,13 @@ const AddAClass = () => {
         console.log(data)
         const url = await uploadImage(data.image[0])
         const { className, instructor, email, price, seats} = data;
-        const instructorData = {
+        const classData = {
             className, instructor, email, price: parseFloat(price),
-            seats: parseFloat(seats), image: url
+            seats: parseFloat(seats), image: url,status:'pending'
         }
-        await postRequestJWT('add/class',instructorData)
+        await postRequestJWT('add/class',classData)
         reset()
-        console.log(instructorData)
+        console.log(classData)
     };
     return (
         <div className="p-10">
