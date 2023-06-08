@@ -1,9 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { makeAdmin } from "../../../utils/CRUD";
 
 const ManageUser = () => {
     const token = localStorage.getItem('token')
-    const { data: users = [], isLoading } = useQuery({
+    const { data: users = [], isLoading ,refetch} = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
             const res = await axios.get('http://localhost:3000/users', {
@@ -13,6 +14,14 @@ const ManageUser = () => {
         }
     })
     console.log(users)
+    const handleMakeAdmin = async (id) => {
+        await makeAdmin(`admin/${id}`)
+        refetch()
+    }
+    const handleMakeInstructor = async (id) => {
+        await makeAdmin(`instructor/${id}`)
+        refetch()
+    }
     if (isLoading) {
         return <p className="text-center">Loading...</p>
     }
@@ -45,8 +54,8 @@ const ManageUser = () => {
                             </td>
                             <td>{user.name}</td>
                             <td>{user.email}</td>
-                            <td> <button className="bg-green-200 p-1 rounded-full disabled:bg-gray-200 disabled:bg-opacity-70 disabled:cursor-not-allowed" disabled={user.role === 'admin'}>Make Admin</button></td>
-                            <td> <button className="bg-red-200 p-1 rounded-full disabled:bg-gray-200 disabled:bg-opacity-70 disabled:cursor-not-allowed" disabled={user.role === 'instructor'}>Make instructor</button></td>
+                            <td> <button className="bg-green-200 p-1 rounded-full disabled:bg-gray-200 disabled:bg-opacity-70 disabled:cursor-not-allowed" onClick={() => handleMakeAdmin(user._id)} disabled={user.role === 'admin'}>Make Admin</button></td>
+                            <td> <button className="bg-red-200 p-1 rounded-full disabled:bg-gray-200 disabled:bg-opacity-70 disabled:cursor-not-allowed" onClick={() => handleMakeInstructor(user._id)} disabled={user.role === 'instructor'}>Make instructor</button></td>
                         </tr>)}
                     </tbody>
                 </table>

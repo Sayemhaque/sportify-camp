@@ -16,7 +16,18 @@ const postRequestJWT = (endpoint,data) => {
   console.log(res.data)
   return res.data
 }
- 
+
+const makeAdmin = (endpoint) => {
+  const res = axios.patch(`${import.meta.env.VITE_BASE_URL}/${endpoint}`)
+  console.log(res)
+  return res.data;
+}
+
+const makeInstructor = (endpoint) => {
+  const res = axios.patch(`${import.meta.env.VITE_BASE_URL}/${endpoint}`)
+  console.log(res)
+  return res.data;
+}
 
 
 const uploadImage = async (image) => {
@@ -28,4 +39,4 @@ const uploadImage = async (image) => {
         return imageURL
 }
 
-export {postRequest,uploadImage,postRequestJWT};
+export {postRequest,uploadImage,postRequestJWT,makeAdmin,makeInstructor};
