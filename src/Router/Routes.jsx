@@ -12,6 +12,7 @@ import ManageClasses from "../components/Dashboard/ManageClasses/ManageClasses";
 import ManageUser from "../components/Dashboard/Manage user/ManageUse";
 import MyClasses from "../components/Dashboard/Instructor/My Classes/MyClasses";
 import AddAClass from "../components/Dashboard/Instructor/AddClass/AddAClass";
+import Instructor from "../Pages/Instructor/Instructor";
 
 
 
@@ -24,6 +25,10 @@ export const router = createBrowserRouter([
             {
                 path: "/",
                 element: <Home />
+            },
+            {
+                path: "instructors",
+                element: <Instructor/>
             },
             {
                 path: "login",
