@@ -7,10 +7,13 @@ const postRequest = async (endpoint,data)  => {
   return res
 }
 
-const addClass = (endpoint,data) => {
+
+
+const postRequestJWT = (endpoint,data) => {
   const res = axios.post(`${import.meta.env.VITE_BASE_URL}/${endpoint}` , data,
    {headers:{authorization:`baerer ${token}`}}
   )
+  console.log(res.data)
   return res.data
 }
  
@@ -25,4 +28,4 @@ const uploadImage = async (image) => {
         return imageURL
 }
 
-export {postRequest,uploadImage,addClass};
+export {postRequest,uploadImage,postRequestJWT};
