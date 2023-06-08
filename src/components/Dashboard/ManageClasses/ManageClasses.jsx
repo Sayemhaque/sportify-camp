@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-const Manage = () => {
+const ManageClasses = () => {
     const token = localStorage.getItem('token')
     const { data: classes = [],isLoading } = useQuery({
         queryKey: ['classes'],
@@ -25,8 +25,9 @@ const Manage = () => {
                     {/* head */}
                     <thead className="bg-gray-200">
                         <tr>
-                            <th></th>
-                            <th> Class name</th>
+                           
+                            <th> Class Image</th>
+                            <th> Class Name</th>
                             <th>Instructor name</th>
                             <th>Instructor email</th>
                             <th>Available seats</th>
@@ -39,10 +40,8 @@ const Manage = () => {
                     </thead>
                     <tbody>
                         {/* row 1 */}
-                        {classes.map((Class, index) => <tr key={Class._id}>
-                            <th>
-                                {index+1}
-                            </th>
+                        {classes.map((Class) => <tr key={Class._id}>
+                            
                             <td>
                                 <div className="flex items-center space-x-3">
                                     <div className="avatar">
@@ -55,6 +54,7 @@ const Manage = () => {
                             <td>
                                 {Class.className}
                             </td>
+                            <td>{Class.instructor}</td>
                             <td>{Class.email}</td>
                             <td>{Class.seats}</td>
                             <td>{Class.price}$</td>
@@ -72,4 +72,4 @@ const Manage = () => {
     );
 };
 
-export default Manage;
+export default ManageClasses;

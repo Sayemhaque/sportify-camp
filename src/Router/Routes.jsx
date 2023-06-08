@@ -9,7 +9,7 @@ import AddAClass from "../components/Dashboard/AddClass/AddAClass";
 import StudentRoute from "../privateRoute/StudentRoute";
 import Myselected from "../components/Dashboard/student/Myselected";
 import AdminRoute from "../privateRoute/AdminRoute";
-import Manage from "../components/Dashboard/ManageUser/Manage";
+import ManageClasses from "../components/Dashboard/ManageClasses/ManageClasses";
 
 
 
@@ -46,8 +46,8 @@ export const router = createBrowserRouter([
                 element:<InstructorRoute><AddAClass/></InstructorRoute>
             },
             {
-                path:'manage',
-                element:<AdminRoute><Manage/></AdminRoute>
+                path:'manage/classes',
+                element:<AdminRoute><ManageClasses/></AdminRoute>
             }
         ]
     }
