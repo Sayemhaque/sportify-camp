@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useContext } from "react";
 import { FirebaseAuthContext } from "../../../Provider/AuthProvider";
+import { Link } from "react-router-dom";
 
 
 const MySelected = () => {
@@ -56,7 +57,9 @@ const MySelected = () => {
                             <td>{Class.instructor}</td>
                             <td>{Class.price}$</td>
                             <td className="cursor-pointer"><FaTrash/></td>
-                            <td className="btn">Pay</td>
+                            <td className="btn">
+                            <Link to='/dashboard/payment' state={Class}>Pay</Link>
+                            </td>
                         </tr>)}
                     </tbody>
                 </table>

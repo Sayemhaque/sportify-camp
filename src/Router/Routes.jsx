@@ -14,6 +14,7 @@ import MyClasses from "../components/Dashboard/Instructor/My Classes/MyClasses";
 import AddAClass from "../components/Dashboard/Instructor/AddClass/AddAClass";
 import Instructor from "../Pages/Instructor/Instructor";
 import Classes from "../Pages/Classes/Classes";
+import Payment from "../components/Dashboard/student/paymet/Payment";
 
 
 
@@ -52,6 +53,10 @@ export const router = createBrowserRouter([
             {
                 path:'selected',
                 element:<StudentRoute><Myselected/></StudentRoute>
+            },
+            {
+                path:'payment',
+                element:<StudentRoute><Payment/></StudentRoute>
             },
             {
                 path:'add',
