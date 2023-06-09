@@ -8,13 +8,19 @@ const postRequest = async (endpoint, data) => {
   return res
 }
 
+const patchRequest = async (endpoint) => {
+  const res = await axios.patch(`${import.meta.env.VITE_BASE_URL}/${endpoint}`)
+  console.log(res)
+  return res
+}
+
 
 
 const postRequestJWT = (endpoint, data) => {
   const res = axios.post(`${import.meta.env.VITE_BASE_URL}/${endpoint}`, data,
     { headers: { authorization: `baerer ${token}` } }
   )
-  console.log(res.data)
+  console.log(res)
   return res.data
 }
 
@@ -52,4 +58,4 @@ const uploadImage = async (image) => {
   return imageURL
 }
 
-export { postRequest, uploadImage, postRequestJWT, makeAdmin, makeInstructor, approveAClass, denyAClass };
+export { postRequest, uploadImage, postRequestJWT, makeAdmin, makeInstructor, approveAClass, denyAClass, patchRequest };

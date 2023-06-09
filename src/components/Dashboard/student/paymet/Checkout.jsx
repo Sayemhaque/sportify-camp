@@ -5,7 +5,7 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { FirebaseAuthContext } from "../../../../Provider/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
-import { postRequestJWT } from "../../../../utils/CRUD";
+import { patchRequest, postRequestJWT } from "../../../../utils/CRUD";
 
 const Checkout = () => {
   const { user } = useContext(FirebaseAuthContext)
@@ -80,8 +80,10 @@ const Checkout = () => {
         selectedClass:location.state,
         classId:location.state.classId
       }
+      //adding payment details to the payment collection
     const res =   await postRequestJWT('payments',paymentData)
-    console.log(res)
+    const seats = await patchRequest(`update/seats/${location.state.classId}`)
+    console.log(res,seats)
     navigate('/dashboard/enrolled')
     
     }
