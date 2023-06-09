@@ -1,20 +1,15 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { approveAClass } from "../../../utils/CRUD";
+import { useGetData } from "../../../hooks/useGetData";
 
 const ManageClasses = () => {
-    const token = localStorage.getItem('token')
-    const { data: classes = [],isLoading,refetch } = useQuery({
-        queryKey: ['classes'],
-        queryFn: async () => {
-            const res = await axios.get('http://localhost:3000/allclasses', {
-                headers: { authorization: `baerer ${token}` }
-            })
-            return res.data
-        }
-    })
+
+    const { data: classes, isLoading: isLoadingClasses, refetch } = useGetData(
+        `allclasses`,
+        ['classes']
+      );
+   
   
-    if(isLoading){
+    if(isLoadingClasses){
         return <p className="text-center">Loading...</p>
     }
     const handleApproveClass = async (id) => {

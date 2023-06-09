@@ -1,15 +1,8 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import Card from "./Card";
+import { useGetData } from "../../../hooks/useGetData";
 
 const Instructor = () => {
-    const { data: instructors = [],} = useQuery({
-        queryKey: ['instructors'],
-        queryFn: async () => {
-            const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/instructors`)
-            return res.data
-        }
-    })
+    const {data:instructors = []} = useGetData('instructors', ['instructors'])
     return (
         <div>
             <h1 className="text-center text-4xl py-2 mt-6 font-serif w-4/12 mx-auto  border border-b-4">Learn From the best</h1>

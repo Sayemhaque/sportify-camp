@@ -1,17 +1,12 @@
-import axios from "axios"
 import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+const token = localStorage.getItem('token')
 
-
-const useGetData = () => {
-    const {data : sliders = []} = useQuery({
-        queryKey:['slider'],
-        queryFn: async () => {
-            const res = axios.get("slider.json")
-            return res.data
-        }
-    })
-
-    return [sliders]
-}
-
-export default useGetData;
+export const useGetData = (endpoint, queryKey) => {
+    return useQuery(queryKey, async () => {
+      const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/${endpoint}`, {
+        headers: { authorization: `baerer ${token}` }
+      });
+      return res.data;
+    });
+  };

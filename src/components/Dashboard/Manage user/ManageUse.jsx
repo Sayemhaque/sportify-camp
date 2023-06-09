@@ -1,18 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+
 import { makeAdmin } from "../../../utils/CRUD";
+import { useGetData } from "../../../hooks/useGetData";
 
 const ManageUser = () => {
-    const token = localStorage.getItem('token')
-    const { data: users = [], isLoading ,refetch} = useQuery({
-        queryKey: ['users'],
-        queryFn: async () => {
-            const res = await axios.get('http://localhost:3000/users', {
-                headers: { authorization: `baerer ${token}` }
-            })
-            return res.data
-        }
-    })
+    const { data: users, isLoading: isLoadingUsers, refetch } = useGetData(`users`, ['users']
+    );
     console.log(users)
     const handleMakeAdmin = async (id) => {
         await makeAdmin(`admin/${id}`)
@@ -22,7 +14,7 @@ const ManageUser = () => {
         await makeAdmin(`instructor/${id}`)
         refetch()
     }
-    if (isLoading) {
+    if (isLoadingUsers) {
         return <p className="text-center">Loading...</p>
     }
     return (

@@ -29,7 +29,7 @@ const Checkout = () => {
       console.log(res.data?.clientSecret)
     }
     getData()
-  }, [])
+  }, [price, token])
 
   const handleSubmit = async (event) => {
     event.preventDefault()

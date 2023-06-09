@@ -1,22 +1,17 @@
 import {useContext} from "react"
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { FirebaseAuthContext } from "../../../../Provider/AuthProvider";
+import { useGetData } from "../../../../hooks/useGetData";
 
 
-const MyClasses = () => {
-    const token = localStorage.getItem('token')
+const MyClasses = () => {  
     const {user} = useContext(FirebaseAuthContext)
-    const { data: classes = [], isLoading} = useQuery({
-        queryKey: ['classes'],
-        queryFn: async () => {
-            const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/instructor/allclasse?email=${user?.email}`, {
-                headers: { authorization: `baerer ${token}` }
-            })
-            return res.data
-        }
-    })
-    if (isLoading) {
+
+    const { data: classes, isLoading: isLoadingClasses } = useGetData(
+        `instructor/allclasse?email=${user?.email}`,
+        ['classes']
+      );
+      
+    if (isLoadingClasses) {
         return <p className="text-center">Loading...</p>
     }
     return (

@@ -2,48 +2,48 @@ import axios from "axios";
 const token = localStorage.getItem('token')
 const image_hosting_key = import.meta.env.VITE_imgbbApiKey
 
-const postRequest = async (endpoint, data) => {
-  const res = await axios.post(`${import.meta.env.VITE_BASE_URL}/${endpoint}`, data)
+const postRequest = async (route, data) => {
+  const res = await axios.post(`${import.meta.env.VITE_BASE_URL}/${route}`, data)
   console.log(res.data)
   return res
 }
 
-const patchRequest = async (endpoint) => {
-  const res = await axios.patch(`${import.meta.env.VITE_BASE_URL}/${endpoint}`)
+const patchRequest = async (route) => {
+  const res = await axios.patch(`${import.meta.env.VITE_BASE_URL}/${route}`)
   console.log(res)
   return res
 }
 
 
 
-const postRequestJWT = (endpoint, data) => {
-  const res = axios.post(`${import.meta.env.VITE_BASE_URL}/${endpoint}`, data,
+const postRequestJWT = (route, data) => {
+  const res = axios.post(`${import.meta.env.VITE_BASE_URL}/${route}`, data,
     { headers: { authorization: `baerer ${token}` } }
   )
   console.log(res)
   return res.data
 }
 
-const makeAdmin = (endpoint) => {
-  const res = axios.patch(`${import.meta.env.VITE_BASE_URL}/${endpoint}`)
+const makeAdmin = (route) => {
+  const res = axios.patch(`${import.meta.env.VITE_BASE_URL}/${route}`)
   console.log(res.data)
   return res.data;
 }
 
-const makeInstructor = (endpoint) => {
-  const res = axios.patch(`${import.meta.env.VITE_BASE_URL}/${endpoint}`)
+const makeInstructor = (route) => {
+  const res = axios.patch(`${import.meta.env.VITE_BASE_URL}/${route}`)
   console.log(res.data)
   return res.data;
 }
 
-const approveAClass = (endpoint) => {
-  const res = axios.patch(`${import.meta.env.VITE_BASE_URL}/${endpoint}`)
+const approveAClass = (route) => {
+  const res = axios.patch(`${import.meta.env.VITE_BASE_URL}/${route}`)
   console.log(res.data)
   return res.data;
 }
 
-const denyAClass = (endpoint) => {
-  const res = axios.patch(`${import.meta.env.VITE_BASE_URL}/${endpoint}`)
+const denyAClass = (route) => {
+  const res = axios.patch(`${import.meta.env.VITE_BASE_URL}/${route}`)
   console.log(res.data)
   return res.data;
 }

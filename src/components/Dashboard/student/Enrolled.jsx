@@ -1,23 +1,14 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { useContext } from "react";
 import { FirebaseAuthContext } from "../../../Provider/AuthProvider";
+import { useGetData } from "../../../hooks/useGetData";
 
 
 const Enrolled = () => {
-    const token = localStorage.getItem('token')
     const { user } = useContext(FirebaseAuthContext)
-    const { data: enrolled = [], isLoading } = useQuery({
-        queryKey: ['enrolled'],
-        queryFn: async () => {
-            const res = await
-                axios.get(`${import.meta.env.VITE_BASE_URL}/enrolled?email=${user?.email}`,
-                    {
-                        headers: { authorization: `baerer ${token}` }
-                    })
-            return res.data
-        }
-    })
+
+    const { data: enrolled, isLoading, } = useGetData(`enrolled?email=${user?.email}`, ['enrolled']
+    );
+
     console.log(enrolled)
 
     if (isLoading) {

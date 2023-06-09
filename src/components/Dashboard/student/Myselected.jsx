@@ -1,25 +1,17 @@
 import {FaTrash} from "react-icons/fa"
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { useContext } from "react";
 import { FirebaseAuthContext } from "../../../Provider/AuthProvider";
 import { Link } from "react-router-dom";
+import { useGetData } from "../../../hooks/useGetData";
 
 
 const MySelected = () => {
-    const token = localStorage.getItem('token')
     const {user} = useContext(FirebaseAuthContext)
-    const { data: myclass = [], isLoading} = useQuery({
-        queryKey: ['myclass'],
-        queryFn: async () => {
-            const res = await 
-            axios.get(`${import.meta.env.VITE_BASE_URL}/selected?email=${user?.email}`,
-             {
-                headers: { authorization: `baerer ${token}` }
-            })
-            return res.data
-        }
-    })
+
+    const { data: myclass, isLoading, } = useGetData(`selected?email=${user?.email}`, ['myclass']
+    );
+
+
     console.log(myclass)
 
     if (isLoading) {

@@ -28,7 +28,7 @@ const Navbar = () => {
         navigate("/login")
     }
     return (
-        <div className={`${isDarkMode ? "bg-slate-800 py-2" : "navbar bg-orange-300 shadow-lg"}`}>
+        <div className={`sticky top-0 z-50 ${isDarkMode ? "bg-slate-800 py-2" : "navbar bg-orange-300 shadow-lg"}`}>
             <div className="navbar md:max-w-6xl mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown ">

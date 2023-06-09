@@ -1,16 +1,10 @@
-import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import Card from './Card';
+import { useGetData } from '../../hooks/useGetData';
 
 
 const Classes = () => {
-    const { data: classes = [],} = useQuery({
-        queryKey: ['classes'],
-        queryFn: async () => {
-            const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/approved/classes`)
-            return res.data
-        }
-    })
+
+    const {data : classes = [] } = useGetData('approved/classes',['classes'])
     return (
         <div>
         <h1 className="text-center text-4xl py-2 mt-6 font-serif w-4/12 mx-auto  border border-b-4">Select the best</h1>
