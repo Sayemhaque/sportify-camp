@@ -22,7 +22,7 @@ const Card = ({Class }) => {
 
     const handleSelect = async () => {
         if(!user){
-         navigate('/login')
+         return navigate('/login')
         }
       const data = {classId:_id,image,instructor,className,seats,price,email:user?.email}
      const res = await postRequest(`select`,data)

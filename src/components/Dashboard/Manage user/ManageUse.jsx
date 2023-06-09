@@ -54,8 +54,8 @@ const ManageUser = () => {
                             </td>
                             <td>{user.name}</td>
                             <td>{user.email}</td>
-                            <td> <button className="bg-green-200 p-1 rounded-full disabled:bg-gray-200 disabled:bg-opacity-70 disabled:cursor-not-allowed" onClick={() => handleMakeAdmin(user._id)} disabled={user.role === 'admin'}>Make Admin</button></td>
-                            <td> <button className="bg-red-200 p-1 rounded-full disabled:bg-gray-200 disabled:bg-opacity-70 disabled:cursor-not-allowed" onClick={() => handleMakeInstructor(user._id)} disabled={user.role === 'instructor'}>Make instructor</button></td>
+                            <td> <button className="bg-green-200 p-1 rounded-full disabled:bg-gray-200 disabled:bg-opacity-70 disabled:cursor-not-allowed" onClick={() => handleMakeAdmin(user._id)} disabled={user.role === 'admin' || 'instructor'}>Make Admin</button></td>
+                            <td> <button className="bg-red-200 p-1 rounded-full disabled:bg-gray-200 disabled:bg-opacity-70 disabled:cursor-not-allowed" onClick={() => handleMakeInstructor(user._id)} disabled={user.role === 'admin' || 'instructor'}>Make instructor</button></td>
                         </tr>)}
                     </tbody>
                 </table>
