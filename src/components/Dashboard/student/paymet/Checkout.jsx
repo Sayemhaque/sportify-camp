@@ -4,7 +4,7 @@ import { CardElement, useStripe, useElements, } from "@stripe/react-stripe-js";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { FirebaseAuthContext } from "../../../../Provider/AuthProvider";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { postRequestJWT } from "../../../../utils/CRUD";
 
 const Checkout = () => {
@@ -18,6 +18,7 @@ const Checkout = () => {
   const [processing, setProcessing] = useState(false);
   const location = useLocation()
   const price = location.state.price;
+  const navigate = useNavigate()
 
   useEffect(() => {
     const getData = async () => {
@@ -81,6 +82,7 @@ const Checkout = () => {
       }
     const res =   await postRequestJWT('payments',paymentData)
     console.log(res)
+    navigate('/dashboard/enrolled')
     
     }
   }
