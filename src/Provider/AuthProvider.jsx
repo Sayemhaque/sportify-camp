@@ -1,8 +1,9 @@
 import {createContext, useEffect, useState} from 'react';
 import {GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile} from "firebase/auth"
 import app from '../Firebase/Firebase.config';
-// import { postRequest } from '../utils/CRUD';
 import axios from 'axios';
+// import { postRequest } from '../utils/CRUD';
+// import axios from 'axios';
 
 
 export const FirebaseAuthContext = createContext()
@@ -44,25 +45,26 @@ const AuthProvider = ({children}) => {
 
     //manage the auth state change
     useEffect(() =>{
-        const unsubscribe = () => onAuthStateChanged(auth,currentUser => {
-            setUser(currentUser)
-            console.log(currentUser)
-            if(currentUser){
-                axios.post('https://sportifycamp.vercel.app/jwt', {email: currentUser.email})
-                .then(data =>{
-                    console.log(data.data)
-                    localStorage.setItem('token', data.data)
-                    setLoading(false);
-                })
+       
+            const unsubscribe = onAuthStateChanged(auth , currentUser => {
+                setUser(currentUser)
+                if(currentUser){
+                    axios.post('https://sportifycamp.vercel.app/jwt', {email: currentUser.email})
+                    .then(data =>{
+                        // console.log(data.data.token)
+                        localStorage.setItem('token', data.data)
+                        setLoading(false);
+                    })
+                }
+                else{
+                    localStorage.removeItem('token')
+                }
+                setLoading(false)
+                console.log(currentUser)
+            })
+            return () => {
+                unsubscribe()
             }
-            else{
-                localStorage.removeItem('token')
-            }
-            setLoading(false) 
-        })
-        return () =>{
-            unsubscribe()
-        }
     } ,[])
 
     const authInfo = {
