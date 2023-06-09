@@ -32,7 +32,6 @@ const AuthProvider = ({children}) => {
      }
     // update user profile on firebase
     const updateUserProfile = (name,photurl) =>{
-        setLoading(true)
         return updateProfile(auth.currentUser,{displayName:name,photoURL:photurl})
     }
 
@@ -46,7 +45,7 @@ const AuthProvider = ({children}) => {
     useEffect(() =>{
         const unsubscribe = () => onAuthStateChanged(auth,currentUser => {
             setUser(currentUser)
-            setLoading(false)
+            
             console.log(currentUser)
             const jwtRequest = async () => {
                 if(currentUser){
@@ -54,11 +53,13 @@ const AuthProvider = ({children}) => {
                     const res = await postRequest('jwt',{email})
                     console.log(res.data)
                      localStorage.setItem('token' , res.data)
+                     setLoading(false)
                 }else{
                     localStorage.removeItem("token")
                 }
             }
             jwtRequest()
+           
         })
         return () =>{
             unsubscribe()

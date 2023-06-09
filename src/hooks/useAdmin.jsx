@@ -6,7 +6,7 @@ const useAdmin = () => {
     const token = localStorage.getItem('token')
     const {user,loading} = useContext(FirebaseAuthContext)
     const {data: isAdmin,isLoading:isAdminLoading} = useQuery({
-        queryKey:['isAdmin'],
+        queryKey: ['isAdmin', user?.email],
         enabled:!loading,
         queryFn:async () => {
             const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/user/admin/${user?.email}`,{

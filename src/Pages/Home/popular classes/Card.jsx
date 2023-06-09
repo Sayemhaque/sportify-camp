@@ -11,7 +11,7 @@ const Card = ({Class }) => {
   <figure><img className="h-[500px] w-full object-cover" src={image} alt="Shoes" /></figure>
   <div className="card-body">
     <h2 className="card-title text-2xl ">{className}</h2>
-    <p><span className="font-bold">Instructor: </span>{instructor}</p>
+    <p className="font-semibold"><span className="font-bold">Instructor: </span>{instructor}</p>
   </div>
 </div>
     );
