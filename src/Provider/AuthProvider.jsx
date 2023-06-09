@@ -45,7 +45,6 @@ const AuthProvider = ({children}) => {
     useEffect(() =>{
         const unsubscribe = () => onAuthStateChanged(auth,currentUser => {
             setUser(currentUser)
-            
             console.log(currentUser)
             const jwtRequest = async () => {
                 if(currentUser){

@@ -11,14 +11,13 @@ const Navbar = () => {
     const { user, logOut } = useContext(FirebaseAuthContext)
     const [isAdmin] = useAdmin()
     const [isInstructor] = useInstructor()
-    console.log(isInstructor)
     const navigate = useNavigate()
     const navLinks = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/instructors'>Instructors</Link></li>
         <li><Link to='/classes'>Classes</Link></li>
         <li>
-            <Link to={isAdmin ? "/dashboard/manage/classes" : isInstructor ? "/dashboard/add" : "/dashboard/selected"}>
+            <Link to={isAdmin ? "/dashboard/manage/classes" : isInstructor ? "/dashboard/add" : (user ? "/dashboard/selected" : '/login')}>
                 Dashboard
             </Link>
         </li>

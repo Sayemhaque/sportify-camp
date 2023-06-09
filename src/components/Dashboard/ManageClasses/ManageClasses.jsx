@@ -3,7 +3,7 @@ import { useGetData } from "../../../hooks/useGetData";
 
 const ManageClasses = () => {
 
-    const { data: classes, isLoading: isLoadingClasses, refetch } = useGetData(
+    const { data: classes = [], isLoading: isLoadingClasses, refetch } = useGetData(
         `allclasses`,
         ['classes']
       );

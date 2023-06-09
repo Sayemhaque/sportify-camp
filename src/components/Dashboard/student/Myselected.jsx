@@ -8,7 +8,7 @@ import { useGetData } from "../../../hooks/useGetData";
 const MySelected = () => {
     const {user} = useContext(FirebaseAuthContext)
 
-    const { data: myclass, isLoading, } = useGetData(`selected?email=${user?.email}`, ['myclass']
+    const { data: myclass = [], isLoading, } = useGetData(`selected?email=${user?.email}`, ['myclass']
     );
 
 

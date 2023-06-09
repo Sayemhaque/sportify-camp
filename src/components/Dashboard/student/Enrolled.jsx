@@ -6,7 +6,7 @@ import { useGetData } from "../../../hooks/useGetData";
 const Enrolled = () => {
     const { user } = useContext(FirebaseAuthContext)
 
-    const { data: enrolled, isLoading, } = useGetData(`enrolled?email=${user?.email}`, ['enrolled']
+    const { data: enrolled = [], isLoading, } = useGetData(`enrolled?email=${user?.email}`, ['enrolled']
     );
 
     console.log(enrolled)

@@ -3,7 +3,7 @@ import { makeAdmin } from "../../../utils/CRUD";
 import { useGetData } from "../../../hooks/useGetData";
 
 const ManageUser = () => {
-    const { data: users, isLoading: isLoadingUsers, refetch } = useGetData(`users`, ['users']
+    const { data: users = [], isLoading: isLoadingUsers, refetch } = useGetData(`users`, ['users']
     );
     console.log(users)
     const handleMakeAdmin = async (id) => {
