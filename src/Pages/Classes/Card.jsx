@@ -25,16 +25,24 @@ const Card = ({Class }) => {
          return navigate('/login')
         }
       const data = {classId:_id,image,instructor,className,seats,price,email:user?.email}
-     const res = await postRequest(`select`,data)
-     if(res.data.insertedId){
-        Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'class seleted successfully',
-            showConfirmButton: false,
-            timer: 1500
-          })
-     }
+  try {
+    const res = await postRequest(`select`,data)
+    if(res.data.insertedId){
+       Swal.fire({
+           position: 'top-end',
+           icon: 'success',
+           title: 'class seleted successfully',
+           showConfirmButton: false,
+           timer: 1500
+         })
+    }
+  } catch (error) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'This class is already selected',
+    });
+  }
     }
     return (
         <div className={`card w-full  shadow-xl ${isDarkMode ? 'bg-slate-800 text-white' : 'bg-orange-300'}`}>
