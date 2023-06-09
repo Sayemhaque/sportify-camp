@@ -1,15 +1,15 @@
-
+import {FaTrash} from "react-icons/fa"
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useContext } from "react";
 import { FirebaseAuthContext } from "../../../Provider/AuthProvider";
 
 
-const ManageUser = () => {
+const MySelected = () => {
     const token = localStorage.getItem('token')
     const {user} = useContext(FirebaseAuthContext)
-    const { data: classes = [], isLoading} = useQuery({
-        queryKey: ['classes'],
+    const { data: myclass = [], isLoading} = useQuery({
+        queryKey: ['myclass'],
         queryFn: async () => {
             const res = await 
             axios.get(`${import.meta.env.VITE_BASE_URL}/selected?email=${user?.email}`,
@@ -19,7 +19,7 @@ const ManageUser = () => {
             return res.data
         }
     })
-    console.log(classes)
+    console.log(myclass)
 
     if (isLoading) {
         return <p className="text-center">Loading...</p>
@@ -42,7 +42,7 @@ const ManageUser = () => {
                     </thead>
                     <tbody>
                         {/* row 1 */}
-                        {classes.map((Class) => <tr key={Class._id}>
+                        {myclass.map((Class) => <tr key={Class._id}>
                             <td>
                                 <div className="flex items-center space-x-3">
                                     <div className="avatar">
@@ -55,8 +55,8 @@ const ManageUser = () => {
                             <td>{Class.className}</td>
                             <td>{Class.instructor}</td>
                             <td>{Class.price}$</td>
-                            <td>Delete</td>
-                            <td>Pay</td>
+                            <td className="cursor-pointer"><FaTrash/></td>
+                            <td className="btn">Pay</td>
                         </tr>)}
                     </tbody>
                 </table>
@@ -65,6 +65,6 @@ const ManageUser = () => {
     );
 };
 
-export default ManageUser;
+export default MySelected;
 
 
