@@ -1,7 +1,8 @@
 import {createContext, useEffect, useState} from 'react';
 import {GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile} from "firebase/auth"
 import app from '../Firebase/Firebase.config';
-import { postRequest } from '../utils/CRUD';
+// import { postRequest } from '../utils/CRUD';
+import axios from 'axios';
 
 
 export const FirebaseAuthContext = createContext()
@@ -46,19 +47,18 @@ const AuthProvider = ({children}) => {
         const unsubscribe = () => onAuthStateChanged(auth,currentUser => {
             setUser(currentUser)
             console.log(currentUser)
-            const jwtRequest = async () => {
-                if(currentUser){
-                    const email = currentUser.email;
-                    const res = await postRequest('jwt',{email})
-                    console.log(res.data)
-                     localStorage.setItem('token' , res.data)
-                     setLoading(false)
-                }else{
-                    localStorage.removeItem("token")
-                }
+            if(currentUser){
+                axios.post('https://sportifycamp.vercel.app/jwt', {email: currentUser.email})
+                .then(data =>{
+                    console.log(data.data)
+                    localStorage.setItem('token', data.data)
+                    setLoading(false);
+                })
             }
-            jwtRequest()
-           
+            else{
+                localStorage.removeItem('token')
+            }
+            setLoading(false) 
         })
         return () =>{
             unsubscribe()
