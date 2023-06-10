@@ -16,6 +16,7 @@ import Instructor from "../Pages/Home/Instructor/Instructor";
 import Classes from "../Pages/Classes/Classes";
 import Payment from "../components/Dashboard/student/paymet/Payment";
 import Enrolled from "../components/Dashboard/student/Enrolled";
+import NotFound from "../Pages/Not found/NotFound";
 
 
 
@@ -23,7 +24,7 @@ export const router = createBrowserRouter([
     {
         path: "/",
         element: <Layout />,
-        errorElement: <div>error page</div>,
+        errorElement: <NotFound/>,
         children: [
             {
                 path: "/",
