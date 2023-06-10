@@ -78,7 +78,8 @@ const Checkout = () => {
         email:user?.email,
         transactionId:paymentIntent.id,
         selectedClass:location.state,
-        classId:location.state.classId
+        classId:location.state.classId,
+        date:new Date()
       }
       //adding payment details to the payment collection
     const res =   await postRequestJWT('payments',paymentData)
@@ -89,15 +90,17 @@ const Checkout = () => {
     }
   }
   return (
-    <form onSubmit={handleSubmit} className="px-14">
+    <form onSubmit={handleSubmit} className="px-14 mt-[100px] bg-base-200 p-12">
       <CardElement
         options={{
           style: {
             base: {
-              fontSize: '16px',
+              fontSize: '35px',
               color: '#424770',
               '::placeholder': {
                 color: '#aab7c4',
+                backgroundColor:"white",
+                padding:"20px"
               },
             },
             invalid: {
@@ -106,11 +109,11 @@ const Checkout = () => {
           },
         }}
       />
-      <p className="text-red-400">{error}</p>
-      <button className="btn btn-primary mt-12 disabled:bg-opacity-25 disabled:cursor-not-allowed" type="submit" disabled={!stripe || !clientSecret || processing}>
+      <p className="text-red-400 mt-3">{error}</p>
+      <button className="btn btn-block bg-orange-300 mt-12 disabled:bg-opacity-25 disabled:cursor-not-allowed" type="submit" disabled={!stripe || !clientSecret || processing}>
         Pay
       </button>
-      {transactionId && <p className="text-green-500">paymanet successfull</p>}
+      {transactionId && <p className="text-green-500 mt-5">paymanet successfull</p>}
     </form>
   );
 };

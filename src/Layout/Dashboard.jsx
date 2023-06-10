@@ -1,7 +1,7 @@
 import { Link, Outlet } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
 import useInstructor from "../hooks/useInstructor";
-import { FaChalkboardTeacher, FaCheckSquare, FaCogs, FaHome, FaPlus, FaUser, FaUsers } from "react-icons/fa";
+import { FaBuilding, FaChalkboardTeacher, FaCheckSquare, FaCogs, FaHome, FaPlus, FaUser, FaUsers } from "react-icons/fa";
 
 const Dashboard = () => {
   const [isAdmin] = useAdmin()
@@ -18,6 +18,11 @@ const Dashboard = () => {
       <li>
         <Link to="/dashboard/enrolled">
           <FaUser/> My Enrolled Classes
+        </Link>
+      </li>
+      <li>
+        <Link to="/dashboard/payment/history">
+          <FaBuilding/> Payment History
         </Link>
       </li>
     </>

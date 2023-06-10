@@ -17,6 +17,7 @@ import Classes from "../Pages/Classes/Classes";
 import Payment from "../components/Dashboard/student/paymet/Payment";
 import Enrolled from "../components/Dashboard/student/Enrolled";
 import NotFound from "../Pages/Not found/NotFound";
+import History from "../components/Dashboard/student/paymet/History";
 
 
 
@@ -63,6 +64,10 @@ export const router = createBrowserRouter([
             {
                 path: 'payment',
                 element: <StudentRoute><Payment /></StudentRoute>
+            },
+            {
+                path: 'payment/history',
+                element: <StudentRoute><History/></StudentRoute>
             },
             {
                 path: 'add',
