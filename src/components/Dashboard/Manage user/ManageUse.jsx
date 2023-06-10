@@ -2,6 +2,7 @@
 import { makeAdmin, makeInstructor } from "../../../utils/CRUD";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import Swal from "sweetalert2";
 
 const ManageUser = () => {
     const token = localStorage.getItem('token')
@@ -17,24 +18,59 @@ const ManageUser = () => {
       
       console.log(users);
       
-      const handleMakeAdmin = async (id) => {
-        try {
-          const res = await makeAdmin(`admin/${id}`);
-          console.log(res.data);
-          refetch();
-        } catch (error) {
-          console.error(error);
-        }
+      const handleMakeAdmin = async (id,name) => {
+        Swal.fire({
+          title: 'Are you sure?',
+          text: "you want to make this user Admin",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, Make Admin!'
+        }).then(async(result) => {
+          if (result.isConfirmed) {
+            try {
+              const res = await makeAdmin(`admin/${id}`);
+              console.log(res.data);
+              refetch();
+            } catch (error) {
+              console.error(error);
+            }
+            Swal.fire(
+              'success!',
+              `${name} is now an Admin`,
+              'success'
+            )
+          }
+        })
       };
       
-      const handleMakeInstructor = async (id) => {
-        try {
-          const res = await makeInstructor(`instructor/${id}`);
-          console.log(res.data);
-          refetch();
-        } catch (error) {
-          console.error(error);
-        }
+      const handleMakeInstructor = async (id,name) => {
+        Swal.fire({
+          title: 'Are you sure?',
+          text: "you want to make this user Instructor",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, Make  Instructor!'
+        }).then(async(result) => {
+          if (result.isConfirmed) {
+            try {
+              const res = await makeInstructor(`instructor/${id}`);
+              console.log(res.data);
+              refetch();
+            } catch (error) {
+              console.error(error);
+            }
+            Swal.fire(
+              'success!',
+              `${name} is now an Instructor`,
+              'success'
+            )
+          }
+        })
+        
       };
     if (isLoadingUsers) {
         return <p className="text-center">Loading...</p>
@@ -68,8 +104,8 @@ const ManageUser = () => {
                             </td>
                             <td>{user.name}</td>
                             <td>{user.email}</td>
-                            <td> <button className="bg-green-200 p-1 rounded-full disabled:bg-gray-200 disabled:bg-opacity-70 disabled:cursor-not-allowed" onClick={() => handleMakeAdmin(user._id)} disabled={user.role === 'admin'}>Make Admin</button></td>
-                            <td> <button className="bg-red-200 p-1 rounded-full disabled:bg-gray-200 disabled:bg-opacity-70 disabled:cursor-not-allowed" onClick={() => handleMakeInstructor(user._id)} disabled={user.role === 'instructor'}>Make instructor</button></td>
+                            <td> <button className="bg-green-200 p-1 rounded-full disabled:bg-gray-200 disabled:bg-opacity-70 disabled:cursor-not-allowed" onClick={() => handleMakeAdmin(user._id,user.name)} disabled={user.role === 'admin'}>Make Admin</button></td>
+                            <td> <button className="bg-red-200 p-1 rounded-full disabled:bg-gray-200 disabled:bg-opacity-70 disabled:cursor-not-allowed" onClick={() => handleMakeInstructor(user._id,user.name)} disabled={user.role === 'instructor'}>Make instructor</button></td>
                         </tr>)}
                     </tbody>
                 </table>
