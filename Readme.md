@@ -1,8 +1,6 @@
 # Sportify
 
 
-Sportify is a web application designed to provide a platform for sports enthusiasts to connect, explore various sports classes, and make online payments. It offers features such as JWT authorization, role-based routing, admin and instructor panels, Firebase authentication, payment integration with Stripe.
-
 ## Features
 
 - **JWT Authorization:** Sportify utilizes JSON Web Tokens (JWT) for secure user authentication and authorization, allowing users to access their accounts and perform authorized actions.
@@ -18,8 +16,8 @@ Sportify is a web application designed to provide a platform for sports enthusia
 
 ## Technologies Used
 
-- Frontend: React.js, React Router DOM
-- Backend: Express.js, CORS
+- Frontend: React.js, React Router DOM,Tailwind css,Daisy ui
+- Backend: Express.js, CORS,JWT,MONGODB
 - Authentication: Firebase Authentication
 - Payment Processing: Stripe
 
