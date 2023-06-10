@@ -1,0 +1,35 @@
+
+    [
+      {
+        "name": "Emily",
+        "rating": 4.5,
+        "comment": "My kids had a great time at the summer camp sports online school. The coaches were engaging and knowledgeable, and they provided a variety of fun activities. It was a convenient and enjoyable experience for my children.",
+        "image":"https://previews.123rf.com/images/shawlinmohd/shawlinmohd1305/shawlinmohd130500165/19396656-female-user-icon.jpg"
+      },
+      {
+        "name": "John",
+        "rating": 5,
+        "comment": "The summer camp sports online school exceeded my expectations. The curriculum was well-structured, and the coaches were fantastic. My son improved his skills and had a blast. Highly recommended!",
+        "image": "https://cdn-icons-png.flaticon.com/512/219/219983.png"
+      },
+      {
+        "name": "Sarah",
+        "rating": 4,
+        "comment": "My daughter loved the summer camp sports online school. She enjoyed the interactive sessions and the opportunity to connect with other young athletes. The coaches were supportive and created a positive learning environment.",
+        "image": "https://cdn-icons-png.flaticon.com/512/219/219969.png"
+      },
+      {
+        "name": "Mike",
+        "rating": 3.5,
+        "comment": "The summer camp sports online school was decent, but there were a few technical issues during the sessions. The coaches did their best to address them, but it interrupted the flow at times. Overall, it was a good experience, but improvements can be made.",
+        "image": "https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=1050"
+      },
+      {
+        "name": "Jessica",
+        "rating": 5,
+        "comment": "I'm impressed with the summer camp sports online school. The coaches were highly skilled and provided personalized attention to each participant. My son gained confidence and learned valuable sportsmanship lessons. We'll definitely join again next year!",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsXgXM66PHgPR_2hCTDrjJHiZRBJjM-eLgA4YFPddxL42RBl4bYDxP7iO5CaSiBinFVyU&usqp=CAU"
+      }
+    ]
+  
+  

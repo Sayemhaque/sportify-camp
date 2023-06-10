@@ -3,11 +3,11 @@ import { useContext } from 'react'
 const Footer = () => {
     const { isDarkMode } = useContext(ThemeContext)
     return (
-        <div>
-            <footer className={`${isDarkMode ? "footer p-10 py-12 bg-slate-800 text-white" :
-            "footer p-10 py-12 bg-orange-300 text-base-content "
+        <div  >
+            <footer className={`${isDarkMode ? "footer p-10  py-12 bg-slate-800 text-white" :
+            "footer p-10 py-12 bg-orange-300 text-base-content"
             }`}>
-                <h3 className="text-center font-bold text-3xl font-serif">SportifyCamp</h3>
+                <h3 className="text-center font-bold text-2xl font-serif">SportifyCamp</h3>
             <div>
                 <span className="footer-title">Services</span>
                 <a className="link link-hover">Training</a>
