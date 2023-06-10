@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
 
 const MySelected = () => {
     const { user } = useContext(FirebaseAuthContext)
-    const { data: myclass = [], isLoading, } = useGetData(`selected?email=${user?.email}`, ['myclass']
+    const { data: myclass = [], isLoading, refetch} = useGetData(`selected?email=${user?.email}`, ['myclass']
     );
 
     const handleDeleteClass = async (id) => {
@@ -24,6 +24,7 @@ const MySelected = () => {
           }).then( async (result) => {
             if (result.isConfirmed) {
                 await deleteRequest(`selected/${id}`)
+                refetch()
               Swal.fire(
                 'Deleted!',
                 'Class deleted successfully',

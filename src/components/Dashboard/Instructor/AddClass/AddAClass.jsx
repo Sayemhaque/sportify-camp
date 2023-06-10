@@ -4,26 +4,27 @@ import { postRequestJWT, uploadImage } from "../../../../utils/CRUD";
 import { FirebaseAuthContext } from "../../../../Provider/AuthProvider";
 import Swal from "sweetalert2";
 const AddAClass = () => {
-    const { register, handleSubmit,reset } = useForm();
+    const { register, handleSubmit, reset } = useForm();
     const { user } = useContext(FirebaseAuthContext)
     const onSubmit = async (data) => {
         console.log(data)
         const url = await uploadImage(data.image[0])
-        const { className, instructor, email, price, seats} = data;
+        const { className, instructor, email, price, seats } = data;
         const classData = {
             className, instructor, email, price: parseFloat(price),
-            seats: parseFloat(seats), image: url,status:'pending'
+            seats: parseFloat(seats), image: url, status: 'pending',
+            totalEnroll:0
         }
-        const res =  await postRequestJWT('add/class',classData)
+        const res = await postRequestJWT('add/class', classData)
         console.log(res)
-        if(res.insertedId){
+        if (res.insertedId) {
             Swal.fire({
                 position: 'top-end',
                 icon: 'success',
                 title: 'Class added successfully',
                 showConfirmButton: false,
                 timer: 1500
-              })
+            })
         }
         reset()
         console.log(classData)
@@ -68,7 +69,7 @@ const AddAClass = () => {
                         <label className="label">
                             <span className="label-text">Pick a Image</span>
                         </label>
-                        <input type="file" {...register("image")}  className="file-input file-input-bordered w-full" />
+                        <input type="file" {...register("image")} className="file-input file-input-bordered w-full" />
                     </div>
                 </div>
                 <button type="sumbit" className="btn bg-orange-300 btn-block mt-5">Add</button>

@@ -1,5 +1,6 @@
 import { approveAClass } from "../../../utils/CRUD";
 import { useGetData } from "../../../hooks/useGetData";
+import Swal from "sweetalert2";
 
 const ManageClasses = () => {
 
@@ -13,12 +14,33 @@ const ManageClasses = () => {
         return <p className="text-center">Loading...</p>
     }
     const handleApproveClass = async (id) => {
-        await approveAClass(`status/approve/${id}`)
-        refetch()
+       const res = await approveAClass(`status/approve/${id}`)
+       console.log(res)
+       if(res.modifiedCount) {
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Class approved',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          refetch()
+       }
+        
     }
     const handleDenyClass = async (id) => {
-        await approveAClass(`status/deny/${id}`)
-        refetch()
+        const res = await approveAClass(`status/deny/${id}`)
+        console.log(res)
+        if(res.modifiedCount) {
+         Swal.fire({
+             position: 'top-end',
+             icon: 'error',
+             title: 'Class denied',
+             showConfirmButton: false,
+             timer: 1500
+           })
+           refetch()
+        }
     }
     return (
         <div>

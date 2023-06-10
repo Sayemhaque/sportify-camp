@@ -45,8 +45,8 @@ const MyClasses = () => {
                             </td>
                             <td>{Class.className}</td>
                             <td>{Class.seats}</td>
-                            <td>{Class.status}</td>
-                            <td>0</td>
+                            <td className={`${Class.status === "approved" ? "text-green-500": "text-yellow-500"}`}>{Class.status}</td>
+                            <td>{Class.totalEnroll}</td>
                             <td>Feed Back</td>
                         </tr>)}
                     </tbody>
