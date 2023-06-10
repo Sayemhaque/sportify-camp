@@ -11,6 +11,7 @@ const MyClasses = () => {
         ['classes']
       );
       
+
     if (isLoadingClasses) {
         return <p className="text-center">Loading...</p>
     }

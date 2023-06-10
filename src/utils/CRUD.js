@@ -14,6 +14,13 @@ const patchRequest = async (route) => {
   return res
 }
 
+const deleteRequest = async (route) => {
+  const res = await axios.delete(`${import.meta.env.VITE_BASE_URL}/${route}`,
+  { headers: { authorization: `baerer ${token}` } }
+  )
+  console.log(res)
+  return res
+}
 
 
 const postRequestJWT = async (route, data) => {
@@ -55,4 +62,4 @@ const uploadImage = async (image) => {
   return imageURL
 }
 
-export { postRequest, uploadImage, postRequestJWT, makeAdmin, makeInstructor, approveAClass, denyAClass, patchRequest };
+export { postRequest, uploadImage, postRequestJWT, makeAdmin, makeInstructor, approveAClass, denyAClass, patchRequest,deleteRequest };

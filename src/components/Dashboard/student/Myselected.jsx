@@ -1,17 +1,37 @@
-import {FaTrash} from "react-icons/fa"
+import { FaTrash } from "react-icons/fa"
 import { useContext } from "react";
 import { FirebaseAuthContext } from "../../../Provider/AuthProvider";
 import { Link } from "react-router-dom";
 import { useGetData } from "../../../hooks/useGetData";
+import { deleteRequest } from "../../../utils/CRUD";
+import Swal from "sweetalert2";
 
 
 const MySelected = () => {
-    const {user} = useContext(FirebaseAuthContext)
-
+    const { user } = useContext(FirebaseAuthContext)
     const { data: myclass = [], isLoading, } = useGetData(`selected?email=${user?.email}`, ['myclass']
     );
 
-
+    const handleDeleteClass = async (id) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "you want to delete this class?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then( async (result) => {
+            if (result.isConfirmed) {
+                await deleteRequest(`selected/${id}`)
+              Swal.fire(
+                'Deleted!',
+                'Class deleted successfully',
+                'success'
+              )
+            }
+          })
+    }
     console.log(myclass)
 
     if (isLoading) {
@@ -48,9 +68,9 @@ const MySelected = () => {
                             <td>{Class.className}</td>
                             <td>{Class.instructor}</td>
                             <td>{Class.price}$</td>
-                            <td className="cursor-pointer"><FaTrash/></td>
+                            <td className="cursor-pointer" onClick={() => handleDeleteClass(Class._id)}><FaTrash /></td>
                             <td className="btn">
-                            <Link to='/dashboard/payment' state={Class}>Pay</Link>
+                                <Link to='/dashboard/payment' state={Class}>Pay</Link>
                             </td>
                         </tr>)}
                     </tbody>
