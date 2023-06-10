@@ -31,11 +31,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: "classes",
-                element: <Classes/>
+                element: <Classes />
             },
             {
                 path: "instructors",
-                element: <Instructor/>
+                element: <Instructor />
             },
             {
                 path: "login",
@@ -48,37 +48,38 @@ export const router = createBrowserRouter([
         ]
     },
     {
-        path:"dashboard",
-        element:<Dashboard/>,
-        children:[
+        path: "dashboard",
+        element: <Dashboard />,
+        children: [
             {
-                path:'selected',
-                element:<StudentRoute><Myselected/></StudentRoute>
+                path: 'selected',
+                element: <StudentRoute><Myselected /></StudentRoute>
             },
             {
-                path:'enrolled',
-                element:<StudentRoute><Enrolled/></StudentRoute>
+                path: 'enrolled',
+                element: <StudentRoute><Enrolled /></StudentRoute>
             },
             {
-                path:'payment',
-                element:<StudentRoute><Payment/></StudentRoute>
+                path: 'payment',
+                element: <StudentRoute><Payment /></StudentRoute>
             },
             {
-                path:'add',
-                element:<InstructorRoute><AddAClass/></InstructorRoute>
+                path: 'add',
+                element: <InstructorRoute><AddAClass /></InstructorRoute>
             },
             {
-                path:'manage/classes',
-                element:<AdminRoute><ManageClasses/></AdminRoute>
+                path: 'instructor/classes',
+                element: <InstructorRoute><MyClasses /></InstructorRoute>
             },
             {
-                path:'manage/users',
-                element:<AdminRoute><ManageUser/></AdminRoute>
+                path: 'manage/classes',
+                element: <AdminRoute><ManageClasses /></AdminRoute>
             },
             {
-                path:'instructor/classes',
-                element:<InstructorRoute><MyClasses/></InstructorRoute>
-            }
+                path: 'manage/users',
+                element: <AdminRoute><ManageUser /></AdminRoute>
+            },
+
         ]
     }
 ])

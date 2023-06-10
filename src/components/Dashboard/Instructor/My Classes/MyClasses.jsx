@@ -1,6 +1,8 @@
 import {useContext} from "react"
 import { FirebaseAuthContext } from "../../../../Provider/AuthProvider";
 import { useGetData } from "../../../../hooks/useGetData";
+import {  FaRegEdit } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 
 const MyClasses = () => {  
@@ -29,6 +31,7 @@ const MyClasses = () => {
                             <th>status</th>
                             <th>Total Enrolled</th>
                             <th>Feedback</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -48,6 +51,7 @@ const MyClasses = () => {
                             <td className={`${Class.status === "approved" ? "text-green-500": "text-yellow-500"}`}>{Class.status}</td>
                             <td>{Class.totalEnroll}</td>
                             <td>Feed Back</td>
+                          <td><Link state={Class._id} to={`/dashboard/update/class/${Class._id}`}><button><FaRegEdit/></button></Link></td>
                         </tr>)}
                     </tbody>
                 </table>
