@@ -1,18 +1,18 @@
-import {useContext} from "react"
+import { useContext } from "react"
 import { FirebaseAuthContext } from "../../../../Provider/AuthProvider";
 import { useGetData } from "../../../../hooks/useGetData";
-import {  FaRegEdit } from "react-icons/fa";
+import { FaRegEdit } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 
-const MyClasses = () => {  
-    const {user} = useContext(FirebaseAuthContext)
+const MyClasses = () => {
+    const { user } = useContext(FirebaseAuthContext)
 
     const { data: classes = [], isLoading: isLoadingClasses } = useGetData(
         `instructor/allclasse?email=${user?.email}`,
         ['classes']
-      );
-      
+    );
+
 
     if (isLoadingClasses) {
         return <p className="text-center">Loading...</p>
@@ -20,7 +20,7 @@ const MyClasses = () => {
     console.log(classes)
     return (
         <div>
-            <h1 className="text-center text-4xl py-2 font-serif w-4/12 mx-auto  border border-b-4">Manage Users</h1>
+            <h1 className="text-center text-2xl md:text-4xl py-2 font-serif w-4/12 mx-auto  border border-b-4">My Classes</h1>
             <div className="overflow-x-auto w-full mt-5">
                 <table className="table w-full">
                     {/* head */}
@@ -49,10 +49,10 @@ const MyClasses = () => {
                             </td>
                             <td>{Class.className}</td>
                             <td>{Class.seats}</td>
-                            <td className={`${Class.status === "approved" ? "text-green-500": "text-yellow-500"}`}>{Class.status}</td>
+                            <td className={`${Class.status === "approved" ? "text-green-500" : "text-yellow-500"}`}>{Class.status}</td>
                             <td>{Class.totalEnroll}</td>
                             <td>{Class.feedback}</td>
-                          <td><Link state={Class._id} to={`/dashboard/update/class/${Class._id}`}><button><FaRegEdit/></button></Link></td>
+                            <td><Link state={Class._id} to={`/dashboard/update/class/${Class._id}`}><button><FaRegEdit /></button></Link></td>
                         </tr>)}
                     </tbody>
                 </table>

@@ -10,9 +10,9 @@ const Home = () => {
                 <title>Sportifycamp | Home</title>
             </Helmet>
           <Slider/>
-          <h1 className="text-center text-xl font-bold font-mono">Popular Instructor</h1>
+          <h1 className="text-center text-xl font-bold font-mono mt-6">Popular Instructor</h1>
           <Instructor/>
-          <h1 className="text-center text-xl font-bold font-mono">Popular Classes</h1>
+          <h1 className="text-center text-xl font-bold font-mono mt-6">Popular Classes</h1>
           <PopularClasses/>
         </div>
     );

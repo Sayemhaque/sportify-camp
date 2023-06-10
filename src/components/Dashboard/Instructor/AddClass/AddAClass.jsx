@@ -13,7 +13,7 @@ const AddAClass = () => {
         const classData = {
             className, instructor, email, price: parseFloat(price),
             seats: parseFloat(seats), image: url, status: 'pending',
-            totalEnroll:0
+            totalEnroll: 0
         }
         const res = await postRequestJWT('add/class', classData)
         console.log(res)

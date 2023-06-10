@@ -34,13 +34,12 @@ const Navbar = () => {
                         <label tabIndex={0} className="btn btn-ghost lg:hidden text-white">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </label>
-                        <ul tabIndex={0} className="menu bg-orange-300 menu-md font-bold dropdown-content mt-3 p-2 shadow z-50  rounded-box w-[200px] h-[200px]">
+                        <ul tabIndex={0} className={`menu menu-md font-bold dropdown-content mt-3 p-2 shadow z-50  rounded-box w-[200px] h-[200px] ${isDarkMode ? " bg-slate-900 text-white" : "bg-orange-300"}`}>
                             {navLinks}
                         </ul>
-
                     </div>
                     {/* website name */}
-                    <a className={`${isDarkMode ? "text-white btn btn-ghost normal-case md:text-3xl font-bold font-serif" : "btn btn-ghost normal-case md:text-3xl font-bold font-serif"}`}>SportifyCamp</a>
+                    <a className={`btn btn-ghost normal-case text-2xl md:text-3xl font-bold font-serif ${isDarkMode ? "text-white" : "text-black"}`}>SportifyCamp</a>
                 </div>
                 <div className="navbar-center  hidden lg:flex">
                     <ul className={`${isDarkMode ? "text-white menu  font-bold text-[16px]  menu-horizontal px-1" : "menu  font-bold text-[16px]  menu-horizontal px-1"}`}>
@@ -49,17 +48,17 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end ">
                     {user && <div className="avatar mr-4">
-                        <div className="w-12">
-                            <img src={user?.photoURL} className="rounded-full" title={user?.displayName} />
+                        <div className="w-12 ">
+                            <img src={user?.photoURL}  className="rounded-full hidden md:block" title={user?.displayName} />
                         </div>
                     </div>
                     }
                     {user ?
-                        <button onClick={handelLogOut} className="px-8 py-2 rounded-full font-bold shadow-md bg-gray-200 ">Log Out
+                        <button onClick={handelLogOut} className="px-4 py-1 md:px-8 md:py-2 rounded-full font-bold shadow-md bg-gray-200 ">Log Out
                         </button>
                         :
                         <Link to="/login">
-                            <button className="px-8 py-2 rounded-full font-bold shadow-md bg-gray-200 ">Log In
+                            <button className="px-8 py-2 rounded-full font-bold shadow-md bg-gray-200">Log In
                             </button>
                         </Link>}
                 </div>
