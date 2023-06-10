@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form"
 import { useContext } from "react";
 import { postRequestJWT, uploadImage } from "../../../../utils/CRUD";
 import { FirebaseAuthContext } from "../../../../Provider/AuthProvider";
+import Swal from "sweetalert2";
 const AddAClass = () => {
     const { register, handleSubmit,reset } = useForm();
     const { user } = useContext(FirebaseAuthContext)
@@ -13,7 +14,17 @@ const AddAClass = () => {
             className, instructor, email, price: parseFloat(price),
             seats: parseFloat(seats), image: url,status:'pending'
         }
-        await postRequestJWT('add/class',classData)
+        const res =  await postRequestJWT('add/class',classData)
+        console.log(res)
+        if(res.insertedId){
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Class added successfully',
+                showConfirmButton: false,
+                timer: 1500
+              })
+        }
         reset()
         console.log(classData)
     };

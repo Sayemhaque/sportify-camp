@@ -1,19 +1,41 @@
 
-import { makeAdmin } from "../../../utils/CRUD";
-import { useGetData } from "../../../hooks/useGetData";
+import { makeAdmin, makeInstructor } from "../../../utils/CRUD";
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 
 const ManageUser = () => {
-    const { data: users = [], isLoading: isLoadingUsers, refetch } = useGetData(`users`, ['users']
-    );
-    console.log(users)
-    const handleMakeAdmin = async (id) => {
-        await makeAdmin(`admin/${id}`)
-        refetch()
-    }
-    const handleMakeInstructor = async (id) => {
-        await makeAdmin(`instructor/${id}`)
-        refetch()
-    }
+    const token = localStorage.getItem('token')
+    const { data: users = [], isLoading: isLoadingUsers, refetch } = useQuery(
+        ['users'],
+        async () => {
+          const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/users`, {
+            headers: { authorization: `bearer ${token}` }
+          });
+          return res.data;
+        }
+      );
+      
+      console.log(users);
+      
+      const handleMakeAdmin = async (id) => {
+        try {
+          const res = await makeAdmin(`admin/${id}`);
+          console.log(res.data);
+          refetch();
+        } catch (error) {
+          console.error(error);
+        }
+      };
+      
+      const handleMakeInstructor = async (id) => {
+        try {
+          const res = await makeInstructor(`instructor/${id}`);
+          console.log(res.data);
+          refetch();
+        } catch (error) {
+          console.error(error);
+        }
+      };
     if (isLoadingUsers) {
         return <p className="text-center">Loading...</p>
     }

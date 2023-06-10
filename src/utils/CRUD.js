@@ -16,8 +16,8 @@ const patchRequest = async (route) => {
 
 
 
-const postRequestJWT = (route, data) => {
-  const res = axios.post(`${import.meta.env.VITE_BASE_URL}/${route}`, data,
+const postRequestJWT = async (route, data) => {
+  const res = await axios.post(`${import.meta.env.VITE_BASE_URL}/${route}`, data,
     { headers: { authorization: `baerer ${token}` } }
   )
   console.log(res)
@@ -25,20 +25,17 @@ const postRequestJWT = (route, data) => {
 }
 
 const makeAdmin = (route) => {
-  const res = axios.patch(`${import.meta.env.VITE_BASE_URL}/${route}`)
-  console.log(res.data)
-  return res.data;
+   return axios.put(`${import.meta.env.VITE_BASE_URL}/${route}`)
+
 }
 
 const makeInstructor = (route) => {
-  const res = axios.patch(`${import.meta.env.VITE_BASE_URL}/${route}`)
-  console.log(res.data)
-  return res.data;
+     return axios.put(`${import.meta.env.VITE_BASE_URL}/${route}`)
 }
 
-const approveAClass = (route) => {
-  const res = axios.patch(`${import.meta.env.VITE_BASE_URL}/${route}`)
-  console.log(res.data)
+const approveAClass = async (route) => {
+  const res = await axios.patch(`${import.meta.env.VITE_BASE_URL}/${route}`)
+  console.log(res)
   return res.data;
 }
 
