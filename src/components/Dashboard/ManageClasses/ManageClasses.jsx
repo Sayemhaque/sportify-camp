@@ -1,15 +1,22 @@
 import { approveAClass } from "../../../utils/CRUD";
-import { useGetData } from "../../../hooks/useGetData";
 import Swal from "sweetalert2";
 import FeedBackModal from "../Modal/FeedBackModal";
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 
 const ManageClasses = () => {
+    const token = localStorage.getItem('token')
 
-    const { data: classes = [], isLoading: isLoadingClasses, refetch } = useGetData(
-        `allclasses`,
-        ['classes']
-    );
-
+    const { data: allclasses = [], isLoading: isLoadingClasses,refetch} = useQuery({
+        queryKey:['iallclasses',],
+        queryFn:async() => {
+            const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/allclasses`,{
+                headers: { authorization: `baerer ${token}` }
+              })
+            return res.data
+        }
+    })
+   
 
     if (isLoadingClasses) {
         return <p className="text-center">Loading...</p>
@@ -66,7 +73,7 @@ const ManageClasses = () => {
                     </thead>
                     <tbody>
                         {/* row 1 */}
-                        {classes.map((Class) => <tr key={Class._id}>
+                        {allclasses.map((Class) => <tr key={Class._id}>
 
                             <td>
                                 <div className="flex items-center space-x-3">

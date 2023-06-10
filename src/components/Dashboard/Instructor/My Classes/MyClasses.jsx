@@ -1,23 +1,31 @@
 import { useContext } from "react"
 import { FirebaseAuthContext } from "../../../../Provider/AuthProvider";
-import { useGetData } from "../../../../hooks/useGetData";
 import { FaRegEdit } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 
 const MyClasses = () => {
     const { user } = useContext(FirebaseAuthContext)
+    const token = localStorage.getItem('token')
 
-    const { data: classes = [], isLoading: isLoadingClasses } = useGetData(
-        `instructor/allclasse?email=${user?.email}`,
-        ['classes']
-    );
+    const { data: instructorClasses = [], isLoading: isLoadingClasses } = useQuery({
+        queryKey: ['instructorclasses'],
+        queryFn: async () => {
+          const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/instructor/allclasse?email=${user?.email}`,{
+            headers: { authorization: `baerer ${token}` }
+          })
+          return response.data;
+        }
+      });
+      
 
 
     if (isLoadingClasses) {
         return <p className="text-center">Loading...</p>
     }
-    console.log(classes)
+    console.log(instructorClasses)
     return (
         <div>
             <h1 className="text-center text-2xl md:text-4xl py-2 font-serif w-4/12 mx-auto  border border-b-4">My Classes</h1>
@@ -37,7 +45,7 @@ const MyClasses = () => {
                     </thead>
                     <tbody>
                         {/* row 1 */}
-                        {classes.map((Class) => <tr key={Class._id}>
+                        {instructorClasses.map((Class) => <tr key={Class._id}>
                             <td>
                                 <div className="flex items-center space-x-3">
                                     <div className="avatar">

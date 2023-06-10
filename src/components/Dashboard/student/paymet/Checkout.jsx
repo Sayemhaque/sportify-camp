@@ -22,7 +22,7 @@ const Checkout = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const res = await axios.post("http://localhost:3000/create-payment-intent", { price }, {
+      const res = await axios.post("https://sportifycamp.vercel.app/create-payment-intent", { price }, {
         headers: { authorization: `baerer ${token}` }
       })
       setClientSecret(res.data?.clientSecret)
