@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const MyClasses = () => {  
     const {user} = useContext(FirebaseAuthContext)
 
-    const { data: classes, isLoading: isLoadingClasses } = useGetData(
+    const { data: classes = [], isLoading: isLoadingClasses } = useGetData(
         `instructor/allclasse?email=${user?.email}`,
         ['classes']
       );
@@ -17,6 +17,7 @@ const MyClasses = () => {
     if (isLoadingClasses) {
         return <p className="text-center">Loading...</p>
     }
+    console.log(classes)
     return (
         <div>
             <h1 className="text-center text-4xl py-2 font-serif w-4/12 mx-auto  border border-b-4">Manage Users</h1>
@@ -50,7 +51,7 @@ const MyClasses = () => {
                             <td>{Class.seats}</td>
                             <td className={`${Class.status === "approved" ? "text-green-500": "text-yellow-500"}`}>{Class.status}</td>
                             <td>{Class.totalEnroll}</td>
-                            <td>Feed Back</td>
+                            <td>{Class.feedback}</td>
                           <td><Link state={Class._id} to={`/dashboard/update/class/${Class._id}`}><button><FaRegEdit/></button></Link></td>
                         </tr>)}
                     </tbody>

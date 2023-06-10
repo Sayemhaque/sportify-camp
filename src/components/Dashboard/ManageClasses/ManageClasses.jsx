@@ -1,45 +1,46 @@
 import { approveAClass } from "../../../utils/CRUD";
 import { useGetData } from "../../../hooks/useGetData";
 import Swal from "sweetalert2";
+import FeedBackModal from "../Modal/FeedBackModal";
 
 const ManageClasses = () => {
 
     const { data: classes = [], isLoading: isLoadingClasses, refetch } = useGetData(
         `allclasses`,
         ['classes']
-      );
-   
-  
-    if(isLoadingClasses){
+    );
+
+
+    if (isLoadingClasses) {
         return <p className="text-center">Loading...</p>
     }
     const handleApproveClass = async (id) => {
-       const res = await approveAClass(`status/approve/${id}`)
-       console.log(res)
-       if(res.modifiedCount) {
-        Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Class approved',
-            showConfirmButton: false,
-            timer: 1500
-          })
-          refetch()
-       }
-        
+        const res = await approveAClass(`status/approve/${id}`)
+        console.log(res)
+        if (res.modifiedCount) {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Class approved',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            refetch()
+        }
+
     }
     const handleDenyClass = async (id) => {
         const res = await approveAClass(`status/deny/${id}`)
         console.log(res)
-        if(res.modifiedCount) {
-         Swal.fire({
-             position: 'top-end',
-             icon: 'error',
-             title: 'Class denied',
-             showConfirmButton: false,
-             timer: 1500
-           })
-           refetch()
+        if (res.modifiedCount) {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Class denied',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            refetch()
         }
     }
     return (
@@ -50,7 +51,7 @@ const ManageClasses = () => {
                     {/* head */}
                     <thead className="bg-gray-200">
                         <tr>
-                           
+
                             <th> Class Image</th>
                             <th> Class Name</th>
                             <th>Instructor name</th>
@@ -66,7 +67,7 @@ const ManageClasses = () => {
                     <tbody>
                         {/* row 1 */}
                         {classes.map((Class) => <tr key={Class._id}>
-                            
+
                             <td>
                                 <div className="flex items-center space-x-3">
                                     <div className="avatar">
@@ -84,12 +85,13 @@ const ManageClasses = () => {
                             <td>{Class.seats}</td>
                             <td>{Class.price}$</td>
                             <td>
-                              {Class.status}
+                                {Class.status}
                             </td>
                             <td> <button className="bg-green-200 p-1 rounded-full disabled:bg-gray-200 disabled:cursor-not-allowed" onClick={() => handleApproveClass(Class._id)} disabled={Class.status !== "pending"}>Approve</button></td>
 
                             <td> <button className="bg-red-200 p-1 rounded-full disabled:bg-gray-200 disabled:cursor-not-allowed" onClick={() => handleDenyClass(Class._id)} disabled={Class.status !== "pending"}>Deny</button></td>
-                            <td> <button className="bg-yellow-200 p-1 rounded-full">Feedback</button></td>
+                            <td><label htmlFor="my-modal-3" className='flex items-center gap-3 cursor-pointer'>Feedback</label></td>
+                            <FeedBackModal id={Class._id}/>
                         </tr>)}
                     </tbody>
                 </table>
