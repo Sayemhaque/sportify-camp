@@ -8,26 +8,40 @@ const AddAClass = () => {
     const { user } = useContext(FirebaseAuthContext)
     const onSubmit = async (data) => {
         console.log(data)
-        const url = await uploadImage(data.image[0])
-        const { className, instructor, email, price, seats } = data;
-        const classData = {
-            className, instructor, email, price: parseFloat(price),
-            seats: parseFloat(seats), image: url, status: 'pending',
-            totalEnroll: parseFloat(0)
+        try {
+            console.log(data);
+            const url = await uploadImage(data.image[0]);
+            const { className, instructor, email, price, seats } = data;
+            const classData = {
+                className,
+                instructor,
+                email,
+                price: parseFloat(price),
+                seats: parseFloat(seats),
+                image: url,
+                status: 'pending',
+                totalEnroll: parseFloat(0),
+            };
+
+            const res = await postRequestJWT('add/class', classData);
+            console.log(res);
+
+            if (res.insertedId) {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Class added successfully',
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            }
+
+            reset();
+            console.log(classData);
+        } catch (error) {
+            console.error(error);
+            // Handle the error appropriately (e.g., show an error message to the user)
         }
-        const res = await postRequestJWT('add/class', classData)
-        console.log(res)
-        if (res.insertedId) {
-            Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'Class added successfully',
-                showConfirmButton: false,
-                timer: 1500
-            })
-        }
-        reset()
-        console.log(classData)
     };
     return (
         <div className="p-10">
