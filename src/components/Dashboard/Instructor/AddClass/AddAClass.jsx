@@ -1,16 +1,19 @@
 import { useForm } from "react-hook-form"
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { postRequestJWT, uploadImage } from "../../../../utils/CRUD";
 import { FirebaseAuthContext } from "../../../../Provider/AuthProvider";
 import Swal from "sweetalert2";
 const AddAClass = () => {
     const { register, handleSubmit, reset } = useForm();
+    const [loading,setLoading]  = useState(false)
     const { user } = useContext(FirebaseAuthContext)
     const onSubmit = async (data) => {
         console.log(data)
         try {
             console.log(data);
+            setLoading(true)
             const url = await uploadImage(data.image[0]);
+            console.log(url)
             const { className, instructor, email, price, seats } = data;
             const classData = {
                 className,
@@ -34,6 +37,7 @@ const AddAClass = () => {
                     showConfirmButton: false,
                     timer: 1500,
                 });
+                setLoading(false)
             }
 
             reset();
@@ -85,7 +89,9 @@ const AddAClass = () => {
                         <input  required type="file" {...register("image")} className="file-input file-input-bordered w-full" />
                     </div>
                 </div>
-                <button type="sumbit" className="btn bg-orange-300 btn-block mt-5">Add</button>
+                <button disabled={loading} type="sumbit" className={`btn bg-orange-300 btn-block mt-5 disabled:bg-opacity-20`}>
+                 {loading ? "Adding...": "Add" }   
+                </button>
             </form>
         </div>
     );

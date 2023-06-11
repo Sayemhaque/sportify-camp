@@ -70,7 +70,8 @@ const denyAClass = (route) => {
     body: formData,
   })
   const data = await response.json()
-  return data
+  console.log(data)
+  return data.data.display_url
 }
 
 export { postRequest, uploadImage, postRequestJWT, makeAdmin, makeInstructor, approveAClass, denyAClass, patchRequest,deleteRequest,patchRequestWithData };
