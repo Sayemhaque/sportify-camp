@@ -40,7 +40,6 @@ const AddAClass = () => {
             console.log(classData);
         } catch (error) {
             console.error(error);
-            // Handle the error appropriately (e.g., show an error message to the user)
         }
     };
     return (
@@ -83,7 +82,7 @@ const AddAClass = () => {
                         <label className="label">
                             <span className="label-text">Pick a Image</span>
                         </label>
-                        <input type="file" {...register("image")} className="file-input file-input-bordered w-full" />
+                        <input  required type="file" {...register("image")} className="file-input file-input-bordered w-full" />
                     </div>
                 </div>
                 <button type="sumbit" className="btn bg-orange-300 btn-block mt-5">Add</button>

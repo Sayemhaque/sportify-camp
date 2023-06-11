@@ -29,6 +29,7 @@ const deleteRequest = async (route) => {
 
 
 const postRequestJWT = async (route, data) => {
+  console.log(token)
   const res = await axios.post(`${import.meta.env.VITE_BASE_URL}/${route}`, data,
     { headers: { authorization: `baerer ${token}` } }
   )
@@ -62,7 +63,7 @@ const denyAClass = (route) => {
   const formData = new FormData()
   formData.append('image', image)
   const url = `https://api.imgbb.com/1/upload?key=${
-    image_hosting_key
+   image_hosting_key
   }`
   const response = await fetch(url, {
     method: 'POST',
