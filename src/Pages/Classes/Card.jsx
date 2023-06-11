@@ -8,7 +8,6 @@ import useAdmin from "../../hooks/useAdmin";
 import useInstructor from "../../hooks/useInstructor";
 import Swal from "sweetalert2";
 
-
 const Card = ({ Class }) => {
   const { user } = useContext(FirebaseAuthContext)
   const { _id, image, className, seats, instructor, price } = Class;
@@ -45,7 +44,7 @@ const Card = ({ Class }) => {
     }
   }
   return (
-    <div className={`card w-full  shadow-xl ${isDarkMode ? 'bg-slate-800 text-white' : 'bg-orange-300'} ${seats < 1 && "bg-red-500 text-white"}`}>
+<div className={`card w-full  shadow-xl ${isDarkMode ? 'bg-slate-800 text-white' : 'bg-orange-300'} ${seats < 1 && "bg-red-500 text-white"}`}>
       <figure><img className="h-[300px] w-full object-cover" src={image} alt="Shoes" /></figure>
       <div className="card-body">
         <h2 className="card-title text-2xl">{className}</h2>
@@ -58,7 +57,6 @@ const Card = ({ Class }) => {
           </button>
         </div>
       </div>
-
     </div>
   );
 };

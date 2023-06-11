@@ -3,6 +3,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useContext } from "react"
 import { ThemeContext } from "../../Provider/ThemeProvider";
 import { useGetData } from "../../hooks/useGetData";
+import { Typewriter } from "react-simple-typewriter";
 
 const Slider = () => {
   const { isDarkMode } = useContext(ThemeContext)
@@ -20,7 +21,17 @@ const Slider = () => {
             <div className="hero-overlay bg-opacity-70"></div>
             <div className="hero-content text-center text-white">
               <div className="max-w-full text-center">
-                <h1 className={`mb-8 text-5xl md:text-6xl font-bold ${isDarkMode ? "text-white" : "text-orange-300"}`}>{item.text}</h1>
+                <h1 className={`mb-8 text-5xl md:text-6xl font-bold ${isDarkMode ? "text-white" : "text-orange-300"}`}>
+                <Typewriter
+                words={[item.text]}
+                loop={false}
+                cursor
+                cursorStyle="_"
+                typeSpeed={70}
+                deleteSpeed={50}
+                delaySpeed={1000}
+              />
+            </h1>
                 <p className="mb-5  max-w-lg mx-auto font-bold text-[14px] md:text-md">
                   {item.message}
                 </p>
