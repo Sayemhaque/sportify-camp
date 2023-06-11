@@ -1,8 +1,8 @@
 import { approveAClass } from "../../../utils/CRUD";
 import Swal from "sweetalert2";
-import FeedBackModal from "../Modal/FeedBackModal";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import { Link } from "react-router-dom";
 
 const ManageClasses = () => {
     const token = localStorage.getItem('token')
@@ -97,9 +97,10 @@ const ManageClasses = () => {
                             <td> <button className="bg-green-200 p-1 rounded-full disabled:bg-gray-200 disabled:cursor-not-allowed" onClick={() => handleApproveClass(Class._id)} disabled={Class.status !== "pending"}>Approve</button></td>
 
                             <td> <button className="bg-red-200 p-1 rounded-full disabled:bg-gray-200 disabled:cursor-not-allowed" onClick={() => handleDenyClass(Class._id)} disabled={Class.status !== "pending"}>Deny</button></td>
-                            <td><label htmlFor="my-modal-3" className='flex items-center gap-3 cursor-pointer'>Feedback</label></td>
-                            <FeedBackModal id={Class._id}/>
-                        </tr>)}
+                            <td><Link  to={`/dashboard/feedback/${Class._id}`} state={Class._id}>Feedback</Link></td>
+                        </tr>
+                        
+                        )}
                     </tbody>
                 </table>
             </div>
