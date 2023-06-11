@@ -9,7 +9,7 @@ const History = () => {
     const { data: history = [], isLoading, } = useGetData(`enrolled?email=${user?.email}`, ['enrolled']
     );
 
-    console.log(history )
+    console.log(history)
 
     if (isLoading) {
         return <p className="text-center">Loading...</p>
@@ -30,12 +30,16 @@ const History = () => {
                     </thead>
                     <tbody>
                         {/* row 1 */}
-                        {history.map((enrollClass) => <tr key={enrollClass._id}>
-                            <td>{enrollClass.selectedClass.className}</td>
-                            <td>{enrollClass.selectedClass.price}$</td>
-                            <td>{enrollClass.transactionId}</td>
-                            <td>{new Date(enrollClass.date).toLocaleString()}</td>
-                        </tr>)}
+                        {history.map(enrollClass => enrollClass)
+                            .sort((a, b) => new Date(b.date) - new Date(a.date))
+                            .map(enrollClass => (
+                                <tr key={enrollClass._id}>
+                                    <td>{enrollClass.selectedClass.className}</td>
+                                    <td>{enrollClass.selectedClass.price}$</td>
+                                    <td>{enrollClass.transactionId}</td>
+                                    <td>{new Date(enrollClass.date).toLocaleString()}</td>
+                                </tr>
+                            ))}
                     </tbody>
                 </table>
             </div>

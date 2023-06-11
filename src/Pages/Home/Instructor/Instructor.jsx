@@ -3,6 +3,7 @@ import { useGetData } from "../../../hooks/useGetData";
 
 const Instructor = () => {
     const {data:instructors = []} = useGetData('instructors', ['instructors'])
+   
     return (
         <div >
             <h1 className="text-center text-2xl md:text-4xl py-2 mt-6 font-serif md:w-4/12 mx-auto  border border-b-4">Learn From the best</h1>

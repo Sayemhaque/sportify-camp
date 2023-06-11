@@ -36,6 +36,7 @@ const ManageClasses = () => {
         }
 
     }
+
     const handleDenyClass = async (id) => {
         const res = await approveAClass(`status/deny/${id}`)
         console.log(res)
@@ -97,7 +98,11 @@ const ManageClasses = () => {
                             <td> <button className="bg-green-200 p-1 rounded-full disabled:bg-gray-200 disabled:cursor-not-allowed" onClick={() => handleApproveClass(Class._id)} disabled={Class.status !== "pending"}>Approve</button></td>
 
                             <td> <button className="bg-red-200 p-1 rounded-full disabled:bg-gray-200 disabled:cursor-not-allowed" onClick={() => handleDenyClass(Class._id)} disabled={Class.status !== "pending"}>Deny</button></td>
-                            <td><Link  to={`/dashboard/feedback/${Class._id}`} state={Class._id}>Feedback</Link></td>
+                            <td 
+                            className={`${Class.status === "pending" ? "hidden" : "block"}`} >
+                            <Link
+                             to={`/dashboard/feedback/${Class._id}`}
+                             state={Class}>Feedback</Link></td>
                         </tr>
                         
                         )}
