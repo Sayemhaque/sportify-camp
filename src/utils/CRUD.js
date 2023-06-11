@@ -58,13 +58,18 @@ const denyAClass = (route) => {
 }
 
 
-const uploadImage = async (image) => {
-  const url = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
+ const uploadImage = async image => {
   const formData = new FormData()
   formData.append('image', image)
-  const res = await axios.post(url, formData)
-  const imageURL = res.data.data.display_url
-  return imageURL
+  const url = `https://api.imgbb.com/1/upload?key=${
+    image_hosting_key
+  }`
+  const response = await fetch(url, {
+    method: 'POST',
+    body: formData,
+  })
+  const data = await response.json()
+  return data
 }
 
 export { postRequest, uploadImage, postRequestJWT, makeAdmin, makeInstructor, approveAClass, denyAClass, patchRequest,deleteRequest,patchRequestWithData };
