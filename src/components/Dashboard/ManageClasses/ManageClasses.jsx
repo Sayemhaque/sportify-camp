@@ -95,14 +95,14 @@ const ManageClasses = () => {
                             <td>
                                 {Class.status}
                             </td>
-                            <td> <button className="bg-green-200 p-1 rounded-full disabled:bg-gray-200 disabled:cursor-not-allowed" onClick={() => handleApproveClass(Class._id)} disabled={Class.status !== "pending"}>Approve</button></td>
+                            <td> <button className="bg-green-200 p-1 disabled:bg-gray-200 disabled:cursor-not-allowed" onClick={() => handleApproveClass(Class._id)} disabled={Class.status !== "pending"}>Approve</button></td>
 
-                            <td> <button className="bg-red-200 p-1 rounded-full disabled:bg-gray-200 disabled:cursor-not-allowed" onClick={() => handleDenyClass(Class._id)} disabled={Class.status !== "pending"}>Deny</button></td>
+                            <td> <button className="bg-red-200 p-1 disabled:bg-gray-200 disabled:cursor-not-allowed" onClick={() => handleDenyClass(Class._id)} disabled={Class.status !== "pending"}>Deny</button></td>
                             <td 
-                            className={`${Class.status === "pending" ? "hidden" : "block"}`} >
+                            className={`${Class.status === "denied" ? "" : "hidden"}`} >
                             <Link
                              to={`/dashboard/feedback/${Class._id}`}
-                             state={Class}>Feedback</Link></td>
+                             state={Class} className="bg-slate-800 text-white p-1">Feedback</Link></td>
                         </tr>
                         
                         )}
