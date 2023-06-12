@@ -5,6 +5,7 @@ import { ThemeContext } from "../../Provider/ThemeProvider";
 import { FirebaseAuthContext } from "../../Provider/AuthProvider";
 import useAdmin from "../../hooks/useAdmin";
 import useInstructor from "../../hooks/useInstructor";
+import logo from "../../assets/player.png"
 
 const Navbar = () => {
     const { isDarkMode } = useContext(ThemeContext)
@@ -39,7 +40,11 @@ const Navbar = () => {
                         </ul>
                     </div>
                     {/* website name */}
-                    <a className={`btn btn-ghost normal-case text-2xl md:text-3xl font-bold font-serif ${isDarkMode ? "text-white" : "text-black"}`}>SportifyCamp</a>
+                    <Link className={` flex flex-col  ${isDarkMode ? "text-white" : "text-black"}`}>
+                        <img className="w-12 h-12" src={logo} alt="" />
+                        <p className="text-bold text-xl font-bold font-serif italic">
+                            Sportfycamp</p>
+                    </Link>
                 </div>
                 <div className="navbar-center  hidden lg:flex">
                     <ul className={`${isDarkMode ? "text-white menu  font-bold text-[16px]  menu-horizontal px-1" : "menu  font-bold text-[16px]  menu-horizontal px-1"}`}>

@@ -1,5 +1,6 @@
 import { ThemeContext } from "../../Provider/ThemeProvider";
 import { useContext } from 'react'
+import logo from "../../assets/player.png"
 const Footer = () => {
     const { isDarkMode } = useContext(ThemeContext)
     return (
@@ -7,7 +8,11 @@ const Footer = () => {
             <footer className={`${isDarkMode ? "footer p-10  py-12 bg-slate-800 text-white" :
             "footer p-10 py-12 bg-orange-300 text-base-content"
             }`}>
-                <h3 className="text-center font-bold text-2xl font-serif">SportifyCamp</h3>
+                <div className={` flex flex-col  ${isDarkMode ? "text-white" : "text-black"}`}>
+                        <img className="w-12 h-12" src={logo} alt="" />
+                        <p className="text-bold text-xl font-bold font-serif italic">
+                            Sportfycamp</p>
+                    </div>
             <div>
                 <span className="footer-title">Services</span>
                 <a className="link link-hover">Training</a>
