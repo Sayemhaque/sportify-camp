@@ -21,7 +21,7 @@ const Slider = () => {
             <div className="hero-overlay bg-opacity-70"></div>
             <div className="hero-content text-center text-white">
               <div className="max-w-full text-center">
-                <h1 className={`mb-8 text-5xl md:text-6xl font-bold ${isDarkMode ? "text-white" : "text-orange-300"}`}>
+                <h1 className={`mb-8 text-5xl md:text-6xl font-bold text-white`}>
                 <Typewriter
                 words={[item.text]}
                 loop={false}

@@ -28,7 +28,8 @@ const Navbar = () => {
         navigate("/login")
     }
     return (
-        <div className={`sticky top-0 z-50 ${isDarkMode ? "bg-slate-800 py-2" : "navbar bg-orange-300 shadow-lg"}`}>
+        <div className={`sticky top-0 z-50 ${isDarkMode ? "bg-slate-800 py-2" : 
+        "navbar bg-white shadow-lg"}`}>
             <div className="navbar md:max-w-6xl mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown ">
@@ -42,7 +43,7 @@ const Navbar = () => {
                     {/* website name */}
                     <Link className={` flex flex-col  ${isDarkMode ? "text-white" : "text-black"}`}>
                         <img className="w-12 h-12" src={logo} alt="" />
-                        <p className="text-bold text-xl font-bold font-serif italic">
+                        <p className="hidden md:flex text-bold text-xl font-bold font-serif italic">
                             Sportfycamp</p>
                     </Link>
                 </div>

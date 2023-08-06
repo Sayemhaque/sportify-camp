@@ -71,7 +71,7 @@ const links = isAdmin ? adminLinks : (isInstructor ? instructorLinks : studentLi
       </div>
       <div className="drawer-side ">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-        <ul className="menu p-4 w-60 font-bold text-[15px] h-full bg-orange-300 ">
+        <ul className="menu p-4 w-60 font-bold text-[15px] h-full bg-gray-200 ">
           <h2 className="text-2xl font-bold mb-12 font-serif">Sportify Camp</h2>
           {/* Sidebar content here */}
           {links}

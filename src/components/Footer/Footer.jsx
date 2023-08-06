@@ -6,7 +6,7 @@ const Footer = () => {
     return (
         <div  >
             <footer className={`${isDarkMode ? "footer p-10  py-12 bg-slate-800 text-white" :
-            "footer p-10 py-12 bg-orange-300 text-base-content"
+            "footer p-10 py-12 bg-gray-200 text-base-content"
             }`}>
                 <div className={` flex flex-col  ${isDarkMode ? "text-white" : "text-black"}`}>
                         <img className="w-12 h-12" src={logo} alt="" />
@@ -49,7 +49,7 @@ const Footer = () => {
             </div>
         </footer>
         <div className={`${isDarkMode ? "bg-slate-800 py-3 text-white  text-center" :
-      "bg-orange-300 py-3  text-center "
+      "bg-gray-200 py-3  text-center "
     }`}>
   <span>Copyright ©sportifycamp 2023 - All right reserved</span>
 </div>

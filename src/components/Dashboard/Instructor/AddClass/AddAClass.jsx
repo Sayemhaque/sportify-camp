@@ -44,6 +44,7 @@ const AddAClass = () => {
             console.log(classData);
         } catch (error) {
             console.error(error);
+            setLoading(false)
         }
     };
     return (

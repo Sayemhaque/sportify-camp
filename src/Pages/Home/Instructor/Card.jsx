@@ -8,7 +8,8 @@ const Card = ({instructor }) => {
     const {isDarkMode} = useContext(ThemeContext)
     return (
       <Fade triggerOnce>
-        <div className={`card w-full  shadow-xl ${isDarkMode ? 'bg-slate-800 text-white' : 'bg-orange-300'}`}>
+        <div className={`card w-full  shadow-xl ${isDarkMode ? 'bg-slate-800 text-white' :
+         'bg-gray-200'}`}>
   <figure><img className="h-[400px] w-full object-cover" src={image} alt="Shoes" /></figure>
   <div className="card-body">
     <h2 className="card-title">Name:{name}</h2>

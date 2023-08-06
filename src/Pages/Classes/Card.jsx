@@ -46,7 +46,8 @@ const Card = ({ Class }) => {
   }
   return (
 <Fade triggerOnce>
-  <div className={`card w-full shadow-xl ${isDarkMode ? 'bg-slate-800 text-white' : 'bg-orange-300'} ${seats < 1 && 'bg-red-500 text-white'}`}>
+  <div className={`card w-full shadow-xl ${isDarkMode ? 'bg-slate-800 text-white' : 
+  'bg-gray-200'} ${seats < 1 && 'bg-red-500 text-white'}`}>
     <figure>
       <img className="h-[300px] w-full object-cover" src={image} alt="Shoes" />
     </figure>
