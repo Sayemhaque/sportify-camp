@@ -3,6 +3,7 @@ import Slider from "../../components/Slider/Slider";
 import Instructor from "./Instructor/Instructor";
 import PopularClasses from "./popular classes/PopularClasses";
 import Reviews from "./reviews/Reviews";
+import Categories from "../../components/Categories/Categories";
 
 
 const Home = () => {
@@ -12,6 +13,7 @@ const Home = () => {
                 <title>Sportifycamp | Home</title>
             </Helmet>
             <Slider />
+            <Categories/>
             <div className="py-12  bg-cover bg-center">
                 <h1 className="text-center text-xl font-bold font-mono mt-6">Popular Instructor</h1>
                 <Instructor />
