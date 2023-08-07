@@ -90,7 +90,7 @@ const AddAClass = () => {
                         <input  required type="file" {...register("image")} className="file-input file-input-bordered w-full" />
                     </div>
                 </div>
-                <button disabled={loading} type="sumbit" className={`btn bg-orange-300 btn-block mt-5 disabled:bg-opacity-20`}>
+                <button disabled={loading} type="sumbit" className={`btn bg-gray-300 btn-block mt-5 disabled:bg-opacity-20`}>
                  {loading ? "Adding...": "Add" }   
                 </button>
             </form>

@@ -56,8 +56,8 @@ const Login = () => {
              className={`underline ${isDarkMode ? 'text-slate-800' : 'text-yellow-500'}`}>
                 Register</Link></p>
                 <div className="text-sm  text-gray-500">
-                <p>Admin Email:mdsayemofficial1000@gmail.com</p>
-                <p>Admin passsword:1234$Q</p>
+                <p>Admin Email: admin2@gmail.com</p>
+                <p>Admin passsword: 1234$Q</p>
                 </div>
             </div>
         </div>
