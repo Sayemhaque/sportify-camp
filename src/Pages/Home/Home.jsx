@@ -6,6 +6,7 @@ import Reviews from "./reviews/Reviews";
 import Categories from "../../components/Categories/Categories";
 import FAq from "../../components/Faq/Faq";
 import Blog from "../../components/Blog/Blog";
+import AboutUs from "../../components/About/AboutUs";
 
 
 const Home = () => {
@@ -15,6 +16,7 @@ const Home = () => {
                 <title>Sportifycamp | Home</title>
             </Helmet>
             <Slider />
+            <AboutUs/>
             <Categories/>
             <div className="py-12  bg-cover bg-center">
                 <h1 className="text-center text-xl font-bold font-mono mt-6">Popular Instructor</h1>
