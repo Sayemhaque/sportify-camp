@@ -51,7 +51,14 @@ const Login = () => {
             <div className="divider">or</div>
             {/* socila login */}
             <SocialLogin/>
-            <p className="text-center mt-5">Do not have an account ? please <Link to="/register" className={`underline ${isDarkMode ? 'text-slate-800' : 'text-yellow-500'}`}>Register</Link></p>
+            <p className="text-center mt-5">Do not have an account ? please 
+            <Link to="/register"
+             className={`underline ${isDarkMode ? 'text-slate-800' : 'text-yellow-500'}`}>
+                Register</Link></p>
+                <div className="text-sm  text-gray-500">
+                <p>Admin Email:mdsayemofficial1000@gmail.com</p>
+                <p>Admin passsword:1234$Q</p>
+                </div>
             </div>
         </div>
     );
