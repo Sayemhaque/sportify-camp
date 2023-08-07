@@ -5,6 +5,7 @@ import PopularClasses from "./popular classes/PopularClasses";
 import Reviews from "./reviews/Reviews";
 import Categories from "../../components/Categories/Categories";
 import FAq from "../../components/Faq/Faq";
+import Blog from "../../components/Blog/Blog";
 
 
 const Home = () => {
@@ -23,6 +24,7 @@ const Home = () => {
                 <h1 className="text-center text-xl font-bold font-mono mt-6">Popular Classes</h1>
                 <PopularClasses />
             </div>
+            <Blog/>
             <FAq/>
             <Reviews />
         </div>

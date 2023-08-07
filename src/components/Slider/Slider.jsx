@@ -36,7 +36,7 @@ const Slider = () => {
                   {item.message}
                 </p>
                 <button className={`px-8 py-3 rounded-full mt-5 font-bold shadow-md  
-                   ${isDarkMode ? "bg-slate-800 text-white" : "bg-orange-300 text-black"}`}>
+                   ${isDarkMode ? "bg-slate-800 text-white" : "bg-gray-200 text-black"}`}>
                   Enroll Now
                 </button>
               </div>
