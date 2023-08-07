@@ -9,7 +9,8 @@ import Swal from "sweetalert2";
 
 const MySelected = () => {
     const { user } = useContext(FirebaseAuthContext)
-    const { data: myclass = [], isLoading, refetch} = useGetData(`selected?email=${user?.email}`, ['myclass']
+    const { data: myclass = [], isLoading, refetch} =
+     useGetData(`selected?email=${user?.email}`, ['myclass']
     );
 
     const handleDeleteClass = async (id) => {
@@ -34,6 +35,7 @@ const MySelected = () => {
           })
     }
     console.log(myclass)
+    
 
     if (isLoading) {
         return <p className="text-center">Loading...</p>

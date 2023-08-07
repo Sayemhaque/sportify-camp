@@ -20,7 +20,7 @@ const patchRequestWithData = async (route,data) => {
   return res
 }
 const deleteRequest = async (route) => {
-  const res = await axios.delete(`${import.meta.env.VITE_BASE_URL}/${route}`,
+  const res = await axios.delete(`https://sportify-camp.onrender.com/${route}`,
   { headers: { authorization: `baerer ${token}` } }
   )
   console.log(res)
