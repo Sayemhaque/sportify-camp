@@ -30,7 +30,7 @@ const deleteRequest = async (route) => {
 
 const postRequestJWT = async (route, data) => {
   console.log(token)
-  const res = await axios.post(`${import.meta.env.VITE_BASE_URL}/${route}`, data,
+  const res = await axios.post(`https://sportify-camp.onrender.com/${route}`, data,
     { headers: { authorization: `baerer ${token}` } }
   )
   console.log(res)
