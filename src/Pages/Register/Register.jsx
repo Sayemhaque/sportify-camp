@@ -61,7 +61,8 @@ const Register = () => {
             <input type="password"  className="px-3 py-2 w-full border border-gray-200 rounded-lg" placeholder="confirm" required {...register("confirm", { required: true })} />
             <input type="text"  className="px-3 py-2 w-full border border-gray-200 rounded-lg" placeholder="Photo Url" required {...register("photurl", { required: true })} />
             <p className="text-red-400">{error}</p>
-            <button className={`py-3 font-bold rounded-full  btn-block ${isDarkMode ? "bg-slate-800 text-white ": "bg-orange-300 text-black"}`}>Register</button>
+            <button className={`py-3 font-bold rounded-full  btn-block 
+            ${isDarkMode ? "bg-slate-800 text-white ": "bg-gray-300 text-black"}`}>Register</button>
             </form>
             <div className="divider">or</div>
             {/* socila login */}

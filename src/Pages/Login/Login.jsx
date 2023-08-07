@@ -41,12 +41,15 @@ const Login = () => {
                     {...register("password", { required: true })}
                 />
                 <span className="absolute right-0 top-1/2 transform -translate-y-1/2 mr-2">
-                    {type ?  <FaEyeSlash className="w-5 h-5" onClick={handleType}/>  : <FaEye
+                    {type ?  <FaEyeSlash className="w-5 h-5" onClick={handleType}/>  :
+                     <FaEye
                     className="w-5 h-5" onClick={handleType}/>}
                 </span>
                 </div>
                 <p className="text-red-400">{error}</p>
-            <button className={`py-3 font-bold rounded-full  btn-block ${isDarkMode ? "bg-slate-800 text-white ": "bg-orange-300 text-black"}`}>Log In</button>
+            <button className={`py-3 font-bold rounded-full  
+            btn-block ${isDarkMode ? "bg-slate-800 text-white ":
+             "bg-gray-300 text-black"}`}>Log In</button>
             </form>
             <div className="divider">or</div>
             {/* socila login */}
