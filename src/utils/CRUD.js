@@ -20,7 +20,7 @@ const patchRequestWithData = async (route,data) => {
   return res
 }
 const deleteRequest = async (route) => {
-  const res = await axios.delete(`https://sportify-camp.onrender.com/${route}`,
+  const res = await axios.delete(`https://sportifycamp.vercel.app/${route}`,
   { headers: { authorization: `baerer ${token}` } }
   )
   console.log(res)
@@ -30,7 +30,7 @@ const deleteRequest = async (route) => {
 
 const postRequestJWT = async (route, data) => {
   console.log(token)
-  const res = await axios.post(`https://sportify-camp.onrender.com/${route}`, data,
+  const res = await axios.post(`https://sportifycamp.vercel.app/${route}`, data,
     { headers: { authorization: `baerer ${token}` } }
   )
   console.log(res)
